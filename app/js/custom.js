@@ -1,2 +1,1 @@
-test = () => alert("hello world!");
-  
+console.log("beta");

@@ -1,1 +1,1 @@
-{"version":3,"sources":["js/app.js"],"names":["test","alert","log"],"mappings":"YAAAA,MAAO,WAAA,MAAMC,OAAM,iBAAnBD,QAAOE,IAAA","file":"app.js","sourcesContent":["test = () => alert(\"hello world!\");\r\n  \nconsole.log(\"alpha\"); "]}
+{"version":3,"sources":["js/app.js"],"names":["console","log"],"mappings":"YAAAA,SAAQC,IAAI,OACZD,SAAQC,IAAI","file":"app.js","sourcesContent":["console.log(\"beta\");\nconsole.log(\"alpha\"); "]}

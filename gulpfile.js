@@ -49,9 +49,9 @@ gulp.task("copy", function () {
         .pipe(useref())
         .pipe(gulpif("*.js", sourcemaps.init()))
         .pipe(gulpif("*.js", babel({ presets: ["env"] })))
-        .pipe(gulpif("*.js", uglify()))
+        .pipe(gulpif("*.js", uglify({ compress : { sequences: false }})))
         .pipe(gulpif("*.js", sourcemaps.write(".")))
-        .pipe(gulp.dest("dist"))
+        .pipe(gulp.dest("dist")) 
         .pipe(browserSync.stream());
 });
 
