@@ -1,4 +1,5 @@
 const gulp = require("gulp"),
+    clean = require("gulp-clean"),
     sass = require("gulp-sass"),
     sourcemaps = require("gulp-sourcemaps"),
     autoprefixer = require("gulp-autoprefixer"),
@@ -10,6 +11,12 @@ const gulp = require("gulp"),
     uncss = require("gulp-uncss"),
     browserSync = require("browser-sync").create();
 
+gulp.task("clean", function(){
+    return gulp.src("dist/*", { read : false})
+        .pipe(clean());
+});
+
+
 gulp.task("css", function () {
     return gulp.src("app/scss/**/*.scss")
         .pipe(sourcemaps.init())
@@ -17,7 +24,7 @@ gulp.task("css", function () {
         .pipe(autoprefixer({
             browsers: ["last 2 versions"]
         }))
-        .pipe(sourcemaps.write("./maps"))
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("dist/css"))
         .pipe(browserSync.stream());
 });
@@ -32,7 +39,7 @@ gulp.task("uncss", function () {
         .pipe(autoprefixer({
             browsers: ["last 2 versions"]
         }))
-        .pipe(sourcemaps.write("./maps"))
+        .pipe(sourcemaps.write("."))
         .pipe(gulp.dest("dist/css"))
         .pipe(browserSync.stream());
 });
@@ -43,7 +50,7 @@ gulp.task("copy", function () {
         .pipe(gulpif("*.js", sourcemaps.init()))
         .pipe(gulpif("*.js", babel({ presets: ["env"] })))
         .pipe(gulpif("*.js", uglify()))
-        .pipe(gulpif("*.js", sourcemaps.write("./maps")))
+        .pipe(gulpif("*.js", sourcemaps.write(".")))
         .pipe(gulp.dest("dist"))
         .pipe(browserSync.stream());
 });

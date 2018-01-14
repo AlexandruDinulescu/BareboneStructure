@@ -1,1 +1,1 @@
-{"version":3,"sources":["js/app.js"],"names":["test","alert"],"mappings":"YAAAA,MAAO,WAAA,MAAMC,OAAM","file":"app.js","sourcesContent":["test = () => alert(\"hello world!\");\r\n"]}
+{"version":3,"sources":["js/app.js"],"names":["test","alert","log"],"mappings":"YAAAA,MAAO,WAAA,MAAMC,OAAM,iBAAnBD,QAAOE,IAAA","file":"app.js","sourcesContent":["test = () => alert(\"hello world!\");\r\n  \nconsole.log(\"alpha\"); "]}
