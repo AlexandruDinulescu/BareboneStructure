@@ -1,2 +1,2 @@
-"use strict";console.log("beta");console.log("alpha");
+"use strict";console.log("beta");
 //# sourceMappingURL=app.js.map
