@@ -1,19 +1,21 @@
 {
   "name": "alexd",
   "version": "0.0.1",
-  "description": "",
+  "description": "Standard Template",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "AlexD",
   "license": "ISC",
   "repository": {
-      "type": "git",
-      "url": "something.git"
+    "type": "git",
+    "url": "something.git"
   },
   "dependencies": {
-    "gulp": "^3.9.1"
+    "@types/jquery": "^3.3.0",
+    "gulp": "^3.9.1",
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
@@ -28,6 +30,7 @@
     "gulp-sourcemaps": "^2.6.0",
     "gulp-uglify": "^2.1.2",
     "gulp-uncss": "^1.0.6",
-    "gulp-useref": "^3.1.2"
+    "gulp-useref": "^3.1.2",
+    "run-sequence": "^2.2.1"
   }
 }

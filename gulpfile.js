@@ -1,76 +1,93 @@
-const gulp = require("gulp"),
-    clean = require("gulp-clean"),
-    sass = require("gulp-sass"),
-    sourcemaps = require("gulp-sourcemaps"),
-    autoprefixer = require("gulp-autoprefixer"),
-    imagemin = require("gulp-imagemin"),
-    useref = require("gulp-useref"),
-    gulpif = require("gulp-if"),
-    uglify = require("gulp-uglify"),
-    babel = require("gulp-babel"),
-    uncss = require("gulp-uncss"),
-    browserSync = require("browser-sync").create();
+const gulp = require('gulp'),
+    clean = require('gulp-clean'),
+    sass = require('gulp-sass'),
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer'),
+    imagemin = require('gulp-imagemin'),
+    useref = require('gulp-useref'),
+    gulpif = require('gulp-if'),
+    uglify = require('gulp-uglify'),
+    babel = require('gulp-babel'),
+    uncss = require('gulp-uncss'),
+    runSequence = require('run-sequence'),
+    browserSync = require('browser-sync').create();
 
-gulp.task("clean", function(){
-    return gulp.src("dist/*", { read : false})
+gulp.task('clean', function(){
+    return gulp.src('dist/*', { read : false})
         .pipe(clean());
 });
 
 
-gulp.task("css", function () {
-    return gulp.src("app/scss/**/*.scss")
+gulp.task('css', function () {
+    return gulp.src('app/scss/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(autoprefixer({
-            browsers: ["last 2 versions"]
+            browsers: ['last 2 versions']
         }))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest("dist/css"))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.stream());
 });
 
-gulp.task("uncss", function () {
-    return gulp.src("app/scss/**/*.scss")
+gulp.task('uncss', function () {
+    return gulp.src('app/scss/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: "compressed" }).on("error", sass.logError))
+        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
         .pipe(uncss({
-            html: ["dist/**/*.html"]
+            html: ['dist/**/*.html']
         }))
         .pipe(autoprefixer({
-            browsers: ["last 2 versions"]
+            browsers: ['last 2 versions']
         }))
-        .pipe(sourcemaps.write("."))
-        .pipe(gulp.dest("dist/css"))
+        .pipe(sourcemaps.write('.'))
+        .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.stream());
 });
 
-gulp.task("copy", function () {
-    return gulp.src("app/**/*.html")
+gulp.task('copy')
+
+gulp.task('copyLib', function(){
+    return gulp.src('app/js/lib/*.*')
+        .pipe(gulp.dest('dist/js/lib/'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('copy', function () {
+    return gulp.src('app/**/*.html')
         .pipe(useref())
-        .pipe(gulpif("*.js", sourcemaps.init()))
-        .pipe(gulpif("*.js", babel({ presets: ["env"] })))
-        .pipe(gulpif("*.js", uglify({ compress : { sequences: false }})))
-        .pipe(gulpif("*.js", sourcemaps.write(".")))
-        .pipe(gulp.dest("dist")) 
+        .pipe(gulpif('*.js', sourcemaps.init()))
+        .pipe(gulpif('*.js', babel({ presets: ['env'] })))
+        .pipe(gulpif('*.js', uglify({ compress : { sequences: false }})))
+        .pipe(gulpif('*.js', sourcemaps.write('.')))
+        .pipe(gulp.dest('dist')) 
         .pipe(browserSync.stream());
 });
 
-gulp.task("images", function () {
-    return gulp.src("app/img/*")
+gulp.task('images', function () {
+    return gulp.src('app/img/*')
         .pipe(imagemin())
-        .pipe(gulp.dest("dist/img"));
+        .pipe(gulp.dest('dist/img'));
 });
 
-gulp.task("browserSync", function () {
+gulp.task('browserSync', function () {
     browserSync.init({
         server: {
-            baseDir: "dist"
+            baseDir: 'dist'
         }
     });
 });
 
-gulp.task("watch", ["browserSync", "css"], function () {
-    gulp.watch("app/img/**/*.*", ["images"]);
-    gulp.watch("app/scss/**/*.scss", ["css"]);
-    gulp.watch("app/**/*.+(html|js)", ["copy"]);
+
+/**
+ * Run Tasks 1st run build then watch
+ */
+gulp.task('build', function(){
+    runSequence('clean', 'copy', 'copyLib', 'images', 'uncss');
+});
+
+gulp.task('watch', ['browserSync', 'css'], function () {
+    gulp.watch('app/img/**/*.*', ['images']);
+    gulp.watch('app/scss/**/*.scss', ['css']);
+    gulp.watch('app/**/*.+(html|js)', ['copy']);
 });

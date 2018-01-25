@@ -1,1 +1,1 @@
-{"version":3,"sources":["js/app.js"],"names":["console","log"],"mappings":"YAAAA,SAAQC,IAAI","file":"app.js","sourcesContent":["console.log(\"beta\");\n"]}
+{"version":3,"sources":["js/app.js"],"names":["console","log"],"mappings":"YAAAA,SAAQC,IAAI","file":"app.js","sourcesContent":["console.log(\"beta\");\n\n"]}
