@@ -1,0 +1,18 @@
+/**
+ * Mixins
+ */
+
+@mixin media-to($name) {
+    @media screen and (max-width: map-get($breakpoints-max, $name)) {
+        /* #{$name} */
+        @content;
+    }
+};
+
+@mixin media-from($name){
+    @media screen and (min-width: map-get($breakpoints-min, $name)) {
+        /* #{$name} */
+        @content;
+    }
+}
+

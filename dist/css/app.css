@@ -1,6 +1,109 @@
+/**
+ * MAIN Application SCSS FIle. Imports everything into this.
+ */
+/**
+ * This SCSS file imports the scss files from this folder 
+ * These SCSS file contain utilities and configuration for the website
+ */
+/**
+ * SCSS Variables
+ */
+/**
+ * Mixins
+ */
+/**
+ * Import SCSS From This Folder 
+ * This Folder only contains SCSS that forms the base of a project
+ */
+/**
+ * RESET STYLESHEET
+ * ================
+ */
+/**
+ * Set up a decent box model on the root element
+ */
+html {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+/**
+   * Make all elements from the DOM inherit from the parent box-sizing
+   * Since `*` has a specificity of 0, it does not override the `html` value
+   * making all elements inheriting from the root box-sizing value
+   * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
+   */
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
+}
+
+/**
+ * All @Font-face font declarations go here
+ */
+/**
+ * Clear inner floats
+ */
+.clearfix::after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+/**
+   * Main content containers
+   * 1. Make the container full-width with a maximum width
+   * 2. Center it in the viewport
+   * 3. Leave some space on the edges, especially valuable on small screens
+   */
+.container {
+  margin-left: auto;
+  /* 2 */
+  margin-right: auto;
+  /* 2 */
+  padding-left: 20px;
+  /* 3 */
+  padding-right: 20px;
+  /* 3 */
+  width: 100%;
+  /* 1 */
+}
+
+/**
+   * Hide text while making it readable for screen readers
+   * 1. Needed in WebKit-based browsers because of an implementation bug;
+   *    See: https://code.google.com/p/chromium/issues/detail?id=457146
+   */
+.hide-text {
+  overflow: hidden;
+  padding: 0;
+  /* 1 */
+  text-indent: 101%;
+  white-space: nowrap;
+}
+
+/**
+   * Hide element while making it readable for screen readers
+   * Shamelessly borrowed from HTML5Boilerplate:
+   * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
+   */
+.visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .button-checkbox {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -49px -244px;
   width: 40px;
@@ -10,6 +113,7 @@
 .button-radio {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -109px -244px;
   width: 40px;
@@ -19,6 +123,7 @@
 .icon-coin {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: 0px -122px;
   width: 102px;
@@ -28,6 +133,7 @@
 .icon-contact-hover {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: 0px 0px;
   width: 170px;
@@ -37,6 +143,7 @@
 .icon-contact {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -190px 0px;
   width: 170px;
@@ -46,6 +153,7 @@
 .icon-google-plus {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: 0px -244px;
   width: 29px;
@@ -55,6 +163,7 @@
 .icon-list {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -200px -244px;
   width: 10px;
@@ -64,6 +173,7 @@
 .icon-news-hover {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -122px -122px;
   width: 102px;
@@ -73,6 +183,7 @@
 .icon-news {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -244px -122px;
   width: 102px;
@@ -82,10 +193,39 @@
 .icon-search {
   display: inline-block;
   margin-right: 5px;
+  background-repeat: no-repeat;
   background-image: url(./img/sprite.png);
   background-position: -169px -244px;
   width: 11px;
   height: 11px;
+}
+
+/**
+ * This SCSS file imports everything from this folder.
+ * These SCSS files denote modules/components such as: buttons/dropdown/navigation/carousels/etc
+ */
+/**
+ * This SCSS file imports all the SCSS files from this folder
+ * These files denote specific scss for different page and page types
+ */
+/**
+ * Space for Vendor SCSS below 
+ */
+p {
+  border: 0px none;
+}
+
+@media screen and (min-width: 0px) {
+  p {
+    /* xs */
+    border: 5px;
+  }
+}
+
+@media screen and (max-width: 991px) {
+  p {
+    /* md */
+  }
 }
 
 body {

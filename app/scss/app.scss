@@ -11,8 +11,16 @@
  * Space for Vendor SCSS below 
  */
 
+p {
+    border: 0px none;
+    @include media-from(xs) {
+        border: 5px;
+    }
+    @include media-to(md) {
 
-@import 'sprite';
+    }
+}
+
 
 body {
      color: red;  
