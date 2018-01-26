@@ -8,7 +8,6 @@ const gulp = require('gulp'),
     gulpif = require('gulp-if'),
     uglify = require('gulp-uglify'),
     babel = require('gulp-babel'),
-    uncss = require('gulp-uncss'),
     runSequence = require('run-sequence'),
     browserSync = require('browser-sync').create(),
     spritesmith = require('gulp.spritesmith');
@@ -21,12 +20,13 @@ gulp.task('clean', function(){
 gulp.task('sprite', function(){
     var spriteData = gulp.src('app/img/sprite/*.png').pipe(spritesmith({
         imgName: 'sprite.png',
-        cssName: '_sprite.scss',
+        cssName: 'base/_sprite.scss',
         imgPath: './img/sprite.png',
         padding: 20,
-        retinaSrcFilter: ['app/img/sprite/*@2x.png'],
-        retinaImgName: 'sprite@2x.png',
-        retinaImgPath: './img/sprite@2x.png'
+        // retinaSrcFilter: ['app/img/sprite/*@2x.png'],
+        // retinaImgName: 'sprite@2x.png',
+        // retinaImgPath: './img/sprite@2x.png',
+        cssTemplate: 'app/scss-templates/scss.template.handlebars'
 
     }));
 
@@ -38,22 +38,7 @@ gulp.task('sprite', function(){
 gulp.task('css', function () {
     return gulp.src('app/scss/**/*.scss')
         .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(autoprefixer({
-            browsers: ['last 2 versions']
-        }))
-        .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.stream());
-});
-
-gulp.task('uncss', function () {
-    return gulp.src('app/scss/**/*.scss')
-        .pipe(sourcemaps.init())
-        .pipe(sass({ outputStyle: 'compressed' }).on('error', sass.logError))
-        .pipe(uncss({
-            html: ['dist/**/*.html']
-        }))
+        .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']
         }))
@@ -108,7 +93,7 @@ gulp.task('browserSync', function () {
  * Run Tasks 1st run build then watch
  */
 gulp.task('build', function(){
-    runSequence('clean', 'copy', 'copyLib', 'copyJQuery', 'sprite', 'images', 'uncss');
+    runSequence('clean', 'copy', 'copyLib', 'copyJQuery', 'sprite', 'images', 'css');
 });
 
 gulp.task('watch', ['browserSync', 'css'], function () {

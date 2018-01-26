@@ -1,3 +1,95 @@
-body{color:red}
+.button-checkbox {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -49px -244px;
+  width: 40px;
+  height: 20px;
+}
+
+.button-radio {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -109px -244px;
+  width: 40px;
+  height: 20px;
+}
+
+.icon-coin {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: 0px -122px;
+  width: 102px;
+  height: 102px;
+}
+
+.icon-contact-hover {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: 0px 0px;
+  width: 170px;
+  height: 102px;
+}
+
+.icon-contact {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -190px 0px;
+  width: 170px;
+  height: 102px;
+}
+
+.icon-google-plus {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: 0px -244px;
+  width: 29px;
+  height: 29px;
+}
+
+.icon-list {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -200px -244px;
+  width: 10px;
+  height: 10px;
+}
+
+.icon-news-hover {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -122px -122px;
+  width: 102px;
+  height: 102px;
+}
+
+.icon-news {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -244px -122px;
+  width: 102px;
+  height: 102px;
+}
+
+.icon-search {
+  display: inline-block;
+  margin-right: 5px;
+  background-image: url(./img/sprite.png);
+  background-position: -169px -244px;
+  width: 11px;
+  height: 11px;
+}
+
+body {
+  color: red;
+}
 
 /*# sourceMappingURL=app.css.map */

@@ -1,3 +1,19 @@
- body {
+/**
+ * MAIN Application SCSS FIle. Imports everything into this.
+ */
+
+@import 'abstracts/module'; // This should go first
+@import 'base/module'; // This should be second
+@import 'modules/module'; // This should be 3rd
+@import 'partials/module'; // 4th
+
+/**
+ * Space for Vendor SCSS below 
+ */
+
+
+@import 'sprite';
+
+body {
      color: red;  
- }
+}
