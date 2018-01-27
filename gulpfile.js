@@ -1,6 +1,7 @@
 const gulp = require('gulp'),
     clean = require('gulp-clean'),
     sass = require('gulp-sass'),
+    sassdoc = require('sassdoc'),
     sourcemaps = require('gulp-sourcemaps'),
     autoprefixer = require('gulp-autoprefixer'),
     imagemin = require('gulp-imagemin'),
@@ -38,6 +39,7 @@ gulp.task('sprite', function(){
 gulp.task('css', function () {
     return gulp.src('app/scss/**/*.scss')
         .pipe(sourcemaps.init())
+        .pipe(sassdoc())
         .pipe(sass({ outputStyle: 'expanded' }).on('error', sass.logError))
         .pipe(autoprefixer({
             browsers: ['last 2 versions']

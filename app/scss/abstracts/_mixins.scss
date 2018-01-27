@@ -1,18 +1,49 @@
-/**
- * Mixins
- */
-
+/// Media To (breakpoint up to) Max Width
+/// @author AlexD 
+/// @group Media Queries
+/// @param {string} $name - $name of the $breakpoint
+/// @example
+///
+///     @include media-to([xs,sm,md,lg,xl,...]) {
+///         @content
+///     }
+/// 
 @mixin media-to($name) {
     @media screen and (max-width: map-get($breakpoints-max, $name)) {
         /* #{$name} */
         @content;
     }
-};
+}
 
-@mixin media-from($name){
+/// Media From (breakpoint from ) Min Width
+/// @author AlexD 
+/// @group Media Queries
+/// @param {string} $name - $name of the $breakpoint 
+/// @example 
+///     
+///     @include media-from([sm,md,lg,xl...]){
+///         @content 
+///     }
+/// 
+@mixin media-from($name) {
     @media screen and (min-width: map-get($breakpoints-min, $name)) {
         /* #{$name} */
         @content;
     }
 }
 
+/// Clearfix mixin just include where needed
+/// @author AlexD
+/// @group utils
+/// @example
+///     .element {
+///         @include clearfix();
+///     }
+/// 
+@mixin clearfix() {
+    &:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+}

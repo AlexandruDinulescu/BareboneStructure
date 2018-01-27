@@ -1,0 +1,18 @@
+/// Get Color From $Colors Map
+/// Easier than just write map-get, write color($key)
+/// @group Colors
+/// @param {string} $color - $color key from $colors map
+/// @require $colors
+/// @example 
+/// 
+///     element { 
+///         color: color($color); 
+///     }
+///
+@function color($color){
+    @if map-has-key($colors, $color){
+        @return map-get($colors, $color);
+    } @else {
+        @error "No Key Found: #{$color}.";  
+    }
+}
