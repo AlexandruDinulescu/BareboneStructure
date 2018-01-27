@@ -3,9 +3,17 @@
  */
 
 @import 'abstracts/module'; // This should go first
-@import 'base/module'; // This should be second
-@import 'modules/module'; // This should be 3rd
-@import 'partials/module'; // 4th
+@import 'vendors/module'; // This is second
+@import 'base/module'; // This is 3rd
+@import 'partials/module'; // AKA Layout
+@import 'modules/module'; // AKA Components
+@import 'pages/module'; // AKA Page specific css 
+
+/**
+ * Shamefull Dispray
+ */
+@import 'shame'; 
+
 
 /**
  * Space for Vendor SCSS below 
