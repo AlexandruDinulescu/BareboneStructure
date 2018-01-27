@@ -1,11 +1,12 @@
 /// Get Color From $Colors Map
 /// Easier than just write map-get, write color($key)
+/// @author AlexD
 /// @group Colors
 /// @param {string} $color - $color key from $colors map
 /// @require $colors
 /// @example 
 /// 
-///     element { 
+///     .element { 
 ///         color: color($color); 
 ///     }
 ///
