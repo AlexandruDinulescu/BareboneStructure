@@ -1,26 +1,372 @@
-/**
- * RESET STYLESHEET
- * ================
- */
-
-
-/**
- * Set up a decent box model on the root element
- */
-
+/* some normalize css stuff */
 html {
-    box-sizing: border-box;
+    font-family: sans-serif; /* 1 */
+    -ms-text-size-adjust: 100%; /* 2 */
+    -webkit-text-size-adjust: 100%; /* 2 */
+    font-size: $website-font-size;
 }
 
-/**
-   * Make all elements from the DOM inherit from the parent box-sizing
-   * Since `*` has a specificity of 0, it does not override the `html` value
-   * making all elements inheriting from the root box-sizing value
-   * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
-   */
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
+html, body, div, span, applet, object, input, textarea, button, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline; 
+	border-radius: 0;
+	-webkit-appearance: none;
 }
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a { 
+	outline: 0px none; 
+	text-decoration: none; 
+}
+*, *:before, *:after {
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
+	box-sizing: border-box;         /* Opera/IE 8+ */
+}
+textarea { overflow: auto; }
+
+button, input, select, textarea {
+    font-family: inherit; /* 1 */
+    font-size: 100%; /* 2 */
+    margin: 0; /* 3 */
+}
+button, input, select, option {
+    line-height: 1.428571429;
+}
+
+img { vertical-align: middle; }
+
+h1, h2, h3, h4, h5, h6 { font-weight: normal; }
+
+/* defaults on strong and em */
+strong { font-weight: 700; vertical-align: baseline; }
+em { font-style: italic; vertical-align: baseline; }
+
+sup { vertical-align: super; line-height: 0; font-size: 75%; }
+sub { vertical-align: sub; line-height: 0; font-size: 75%;}
+
+/* === === === separator bars === === === */
+hr { padding: 0px; margin: 0px; border: 0px none; height: 0px; clear: both; }
+
+hr[data-role*="only-clear"] { padding: 0px; margin: 0px; border: 0px none; height: 0px; clear: both; }
+hr[data-role*='separator'] { margin-left: 10px; margin-right: 10px; margin-top: 20px; margin-bottom: 20px; border-bottom: 1px solid rgb(78,78,78);  }
+hr[data-role*="inner"] { margin-left: 0px; margin-right: 0px; }
+hr[data-role*="only-top"] { margin-bottom: 0px; }
+hr[data-role*="only-bottom"] { margin-top: 0px; }
+hr[data-role*="no-border"] { border: 0px none; }
+/* === === === end of separator bars === === === */
+
+
+
+/* === === === input widths === === === */
+/* === === === end of input widths === === === */
+
+
+/* === === === input-text-css === === === */
+/* === === placeholder css === === */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+::-webkit-input-placeholder {
+   color: rgb(153,153,153);
+   opacity: 1;
+}
+
+:-moz-placeholder { /* Firefox 18- */
+   color: rgb(153,153,153);
+	opacity: 1;
+}
+
+::-moz-placeholder {  /* Firefox 19+ */
+   color: rgb(153,153,153);  
+   opacity: 1;
+}
+
+:-ms-input-placeholder {  
+   color: rgb(153,153,153);
+	opacity: 1;
+}
+/* === === end of placeholder css === === */
+
+/* === === input style css === === */
+button { }
+button, textarea { border: 0px; padding: 0px; background: transparent; margin: 0px;  resize: none; }
+input:focus, textarea:focus { outline: 0px; }
+
+form.has-validation input:focus:required:invalid, form.has-validation input:focus:required:out-of-range { border-color: red; background-color: rgba(255,0,0,0.02); }
+form.has-validation input:required:valid, form.has-validation input:required:in-range { border-color: green; background-color: rgba(0,255,0,0.02); }
+
+
+
+
+/* font-sizes */
+[class^="i-btn"], a[class^="i-other-btn"], .form-control { font-size: 0.75rem;}
+[class^="i-btn"][class*="i-btn-lg"], .input-lg  { font-size: 1rem; }
+[class^="i-btn"][class*="i-btn-sm"], [class^="i-btn"][class*="i-btn-xs"], .input-sm { font-size: 0.6rem; }
+
+
+
+/* end of font-sizes */
+
+
+
+
+/* original sizes */
+[class^="i-btn"] { padding: 6px 12px; }
+[class^="i-btn"][class*="i-btn-lg"] {  padding: 10px 16px; /* +4px +4px */ line-height: 1.333333333333333; border-radius: 6px; }
+[class^="i-btn"][class*="i-btn-sm"], [class^="i-btn"][class*="i-btn-xs"] {  padding: 5px 10px; /* -1px -6px */ font-size: 0.65rem; line-height: 1.5; border-radius: 3px; }
+[class^="i-btn"][class*="i-btn-xs"] { padding: 1px 5px; } 
+/* end of original sizes */
+
+[class^="i-btn"], a[class^="i-other-btn"]  { 
+	border-radius: 4px; 
+	position: relative; 
+	display: inline-block; 
+	text-align: center; 
+	width: auto;  
+	cursor: pointer;
+	font-family: Arial, Helvetica; color: rgb(255,255,255); font-weight: 400; text-shadow: 0px -1px 0px rgba(0,46,103,0.65); text-align: center;
+	line-height: 1.42857; 
+	transition: all 0.25s ease-in-out; 
+	-webkit-transition: all 0.25s ease-in-out; 
+	height: auto;
+	vertical-align: middle;
+	border-width: 1px; 
+	border-style: solid; 
+}
+[class^="i-btn"] + [class^="i-btn"], [class^="i-other-btn"]  + [class^="i-other-btn"] { margin-left: 4px; }
+
+/* full width block */
+[class^="i-btn"][class*="i-btn-block"] { width: 100%; display: block; margin: 0px; }
+
+/* icons are same size */
+[class^="i-btn"][class*="icon-"][class*="left-side"] { position: relative; padding-left: 38px; /* padding-left must be the image size + some pixels */ }
+[class^="i-btn"][class*="icon-"][class*="left-side"]:before { content: " "; background-repeat: no-repeat; background-position: center center; top: 0px; position: absolute; left: 10px; top: 50%; margin-top: -14px; width: 28px; height: 28px; } /* margin-top must be minus half of the image size and width and height have to be the size of the image */
+[class^="i-btn"][class*="icon-"][class*="right-side"] { position: relative; padding-right: 38px; }
+[class^="i-btn"][class*="icon-"][class*="right-side"]:before { content: " "; background-repeat: no-repeat; background-position: center center; top: 0px; position: absolute; right: 5px; top: 50%; margin-top: -14px; width: 28px; height: 28px; }
+
+/* either set them as content or as a background-image if you have a sprite */
+[class^="i-btn"][class*="icon-edit"]:before { content: ""; background-image: url("./../uihp-icon-edit.png"); /* background-image */  }
+
+
+/* btn borders */
+[class^="i-btn"][class*="i-btn-main"], [class^="i-other-btn"][class*="i-btn-main"] {  border-color: rgb(34, 109, 200); }
+[class^="i-btn"][class*="i-btn-info"], [class^="i-other-btn"][class*="i-btn-info"] { border-color: rgb(44,150,180); }
+[class^="i-btn"][class*="i-btn-success"], [class^="i-other-btn"][class*="i-btn-info"] { border-color: rgb(76, 174, 76); } 
+[class^="i-btn"][class*="i-btn-default"], [class^="i-other-btn"][class*="i-btn-default"] {  text-shadow: 0px 0px 0px rgb(0,0,0); color: rgb(51, 51, 51); }
+/* end of btn borders */
+
+
+
+/* sctructure button is untested ensure line-height on span is bigger than the largest image else you wil get unequal buttons, good system if you have 2-3 sets of icons of different sizes but same sizes common together makes 3 classes of line-heights, one ofr each and add the class to them 
+<a class='other-btn'>
+	<i><img src='/path/to/img/' /></i>
+	<span>Button text here</span>
+</a>
+<button class='other-btn'>
+	<i><img src="./path/to/img' /></i>
+	<span>button text here </span>
+</button>
+*/
+[class^="i-other-btn"] {  padding: 0px 8px; position: relative; display: table;} 
+[class^="i-other-btn"] span  { padding: 0px 6px; display: table-cell; vertical-align: middle;  }
+[class^="i-other-btn"] i {  display: table-cell;  vertical-align: middle;  }
+[class^="i-other-btn"] img { display: block; }
+/* end of system to use if the icons are different sizes */
+
+
+/* some default inputs */
+.form-control { 
+	height: auto; 
+	background-color: rgb(255,255,255); 
+	background-image: none; 
+	border-radius: 4px;
+	box-shadow: inset 2px 2px 1px -1px rgba(0,0,0,0.075);
+	color: rgb(85,85,85); 
+	width: 100%; 
+	display: block; 
+	padding: 6px 12px;
+	line-height: 1.428571429;
+	border: 1px solid rgb(204,204,204); 
+	transition: all 0.25s ease-in-out; 
+	-webkit-transition: all 0.25s ease-in-out;
+	vertical-align: middle; 
+
+}
+
+.form-control:focus {
+	border-color: rgb(102,175,233); 
+	box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6)
+}
+
+
+.input-lg { height: auto; padding: 10px 16px; font-size: 1.15rem; line-height: 1.33; border-radius: 6px; }
+.input-sm { height: auto; padding: 5px 10px; font-size: 0.65rem; line-height: 1.5; border-radius: 3px; }
+
+textarea.form-control { height: auto; }
+@-moz-document url-prefix() {
+	select.form-control { padding-top: 0px; padding-bottom: 0px; }
+	
+}
+select.form-control option { padding: 6px 12px; }
+
+select.input-sm { /* height: 30px; line-height: 30px;*/ }
+select.input-sm.form-control option { padding: 5px 10px; }
+select.input-lg { /* height: 45px; line-height: 45px; */}
+select.input-lg.form-control option { padding: 10px 16px; }
+
+
+.form-row-inline > * { display: inline-block; vertical-align: middle; margin-left: 10px; }
+.form-row-inline > *:first-child { margin-left: 0px; }
+
+.form-row, .form-row-inline { margin-top: 10px; }
+.form-row:first-child, .form-row-inline:first-child { margin-top: 0px; }
+
+.form-group { margin-top: 10px; display: table; width: 100%; vertical-align: middle;  }
+.form-group:first-child { margin-top: 0px; }
+.form-group > * { display: table-row; }
+.form-group > *:first-child > * { padding-top: 0px; }
+.form-group > * > * { display: table-cell; padding-top: 10px; width: 100%; vertical-align: middle;}
+.form-group > * > *:first-child { text-align: right; padding-right: 10px; white-space: nowrap; width: auto; }
+
+@media screen and (max-width: 736px){
+	.form-group { display: block; }
+	.form-group > * { display: block; }
+	.form-group > * > * { display: block; }
+	.form-group > * > *:first-child { text-align: left; white-space: normal;}
+
+}
+
+.search-form-one-row { position: relative;  overflow: hidden;}
+.search-form-one-row .form-row { position: relative; overflow: hidden; }
+.search-form-one-row input { border-radius: 0px; }
+.search-form-one-row button[type='submit'] { background-image: url("./../images/icon-search.png"); background-repeat: no-repeat; background-position: center center; position: absolute; right: 0px; top: 0px;  cursor: pointer; z-index: 5; }
+				
+/* 					
+				<div class='search-form-one-row'>	
+					<form action="#" method="post">
+						<div class="form-row">
+							<input type="text" class="form-control" placeholder="Search snow conditions by city" />
+							<button type="submit"></button>
+						</div>
+					</form>
+				</div>
+*/
+
+.form-row-special { margin-top: 10px; }
+.form-row-special button { float: right; border-top-left-radius: 0px; border-bottom-left-radius: 0px; } 
+.form-row-special .form-control-container { overflow: hidden; }
+.form-row-special input, .form-row-special select { border-top-right-radius: 0px; border-bottom-right-radius: 0px; }
+
+/* 			<div class="form-row-special">
+				<button class="i-btn i-btn-bb-custom" type="submit">Sign Up</button>
+				<div class="form-control-container">
+					<input type="email" required="required" class="form-control" placeholder="your@email.address" />
+				</div>
+			</div> */
+
+.radio, .checkbox { display: block; vertical-align: middle; }
+.radio-inline, .checkbox-inline { display: inline-block; vertical-align: middle; cursor: pointer; }
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline, .radio-inline + .checkbox-inline, .checkbox-inline + .radio-inline { margin-left: 10px; }
+.radio label, .checkbox label { cursor: pointer; }
+
+input[type="checkbox"], input[type="radio"] { display:none; }
+input[type="checkbox"] + label { position: relative; padding-right: 0px; display: block; line-height: 20px; min-height: 20px; cursor: pointer; padding-left: 24px; }
+input[type="checkbox"] + label:before { 
+	content: " ";
+	position: absolute; left: 0px; top: 50%; margin-top: -10px;
+    width:20px;
+    height:20px;
+    vertical-align:middle;
+    background-image: url("./../images/button-checkbox.png");
+    background-repeat: no-repeat; background-position: left top;
+    cursor:pointer;
+}
+input[type="checkbox"]:checked + label:before {
+   background-position: -20px top;
+}
+input[type="radio"] + label { position: relative; padding-left: 0px; display: block; min-height: 20px; padding-left: 24px; cursor: pointer; }
+input[type="radio"] + label:before {
+	content: " ";
+	position: absolute;
+	left: 0px; 
+	top: 50%; 
+	margin-top: -10px; 
+	width: 20px;
+	height: 20px;
+	vertical-align: middle;
+	background-image: url("./../images/button-radio.png");
+	background-repeat: no-repeat; 
+	background-position: left top;
+	cursor: pointer;
+}
+input[type="radio"]:checked + label:before {
+	background-position: -20px top; 	
+}
+/* 
+<input type="checkbox" id="c1" name="cc" />
+<label for="c1"><span></span>Check Box 1</label>
+
+<input type="radio" id="c1" name="cc" />
+<label for="c1" onclick="" ><span></span>RADIO BOX 1</label>
+*/
+
+/* === === end of input style css === === */
+/* === === === end of input-text-css === === === */
+
+
+/* === === === buttons css === === === */
+/* === === === end of buttons css === === === */
+
+
+/* === === === form buttons css === === === */
+/* === === custom form upload button === === */
+.button-select-file-202px-32px { position: relative; width: 202px; height: 32px; overflow: hidden; }
+.button-select-file-202px-32px span.button { background-image: url("./../images/buttons-inputs/button-brown-32px.png"); background-repeat: repeat-x; background-position: left top; width: 202px; height: 32px; cursor: pointer; line-height: 32px; color: #f9f9ec; text-align: center; font-size: 16px; border-radius: 5px; display: block; font-weight: bold; font-family: Arial, Helvetica;  }
+.button-select-file-202px-32px input { cursor: pointer; height: 100%; position: absolute; right: 0px; top: 0px; filter: alpha(opacity=1); -moz-opacity: 0.01; opacity: 0.01; font-size: 100px; }
+/* === === end of custom form upload button === === */
+/* === === == end of form buttons css === === === */

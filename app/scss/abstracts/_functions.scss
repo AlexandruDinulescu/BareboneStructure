@@ -1,19 +1,38 @@
+////
+/// @author AlexD
+////
+
+
 /// Get Color From $Colors Map
 /// Easier than just write map-get, write color($key)
-/// @author AlexD
 /// @group Colors
 /// @param {string} $color - $color key from $colors map
 /// @require $colors
 /// @example 
-/// 
 ///     .element { 
 ///         color: color($color); 
 ///     }
-///
 @function color($color){
-    @if map-has-key($colors, $color){
+    @if map-has-key($colors, $color) {
         @return map-get($colors, $color);
     } @else {
         @error "No Key Found: #{$color}.";  
+    }
+}
+
+/// Get Color from $websiteColors 
+/// Easier than just write map-get, write webColor($key)
+/// @group Colors
+/// @param {string} $color - $color key from $websiteColors map
+/// @require $websiteColors
+/// @example
+///     .element { 
+///         color: webColor($color);
+///     }
+@function webColor($color){
+    @if map-has-key($websiteColors, $color) {
+        @return map-get($websiteColors, $color);
+    } @else {
+        @error "No Key Found: #{$color}.";
     }
 }

@@ -5,8 +5,8 @@
 @import 'abstracts/module'; // This should go first
 @import 'vendors/module'; // This is second
 @import 'base/module'; // This is 3rd
-@import 'partials/module'; // AKA Layout
-@import 'modules/module'; // AKA Components
+@import 'layout/module'; // AKA Layout
+@import 'components/module'; // AKA Components
 @import 'pages/module'; // AKA Page specific css 
 
 /**

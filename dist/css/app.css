@@ -1,78 +1,750 @@
+@charset "UTF-8";
 /**
  * MAIN Application SCSS FIle. Imports everything into this.
  */
 /**
- * This SCSS file imports the scss files from this folder 
- * These SCSS file contain utilities and configuration for the website
+ * The abstracts/ folder gathers all Sass tools and helpers used across the project. Every global variable, function, mixin and placeholder should be put in here.
+    The rule of thumb for this folder is that it should not output a single line of CSS when compiled on its own. These are nothing but Sass helpers 
  */
 /**
  * SCSS Variables
  */
 /**
- * Import SCSS From This Folder 
- * This Folder only contains SCSS that forms the base of a project
+ * And last but not least, most projects will have a vendors/ folder containing all the CSS files from external libraries and frameworks – Normalize, Bootstrap, jQueryUI, FancyCarouselSliderjQueryPowered, and so on. Putting those aside in the same folder is a good way to say “Hey, this is not from me, not my code, not my responsibility”.
+ * 
+ * 
  */
 /**
- * RESET STYLESHEET
- * ================
+ * The base/ folder holds what we might call the boilerplate code for the project. In there, you might find the reset file, some typographic rules, and probably a stylesheet defining some standard styles for commonly used HTML elements (that I like to call _base.scss). 
  */
-/**
- * Set up a decent box model on the root element
- */
+/* some normalize css stuff */
 html {
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  font-family: sans-serif;
+  /* 1 */
+  -ms-text-size-adjust: 100%;
+  /* 2 */
+  -webkit-text-size-adjust: 100%;
+  /* 2 */
+  font-size: 62.5%;
 }
 
-/**
-   * Make all elements from the DOM inherit from the parent box-sizing
-   * Since `*` has a specificity of 0, it does not override the `html` value
-   * making all elements inheriting from the root box-sizing value
-   * See: https://css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice/
-   */
-*,
-*::before,
-*::after {
-  -webkit-box-sizing: inherit;
-          box-sizing: inherit;
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, input, textarea, button, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, input, button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  border-radius: 0;
+  -webkit-appearance: none;
 }
 
-/**
- * All @Font-face font declarations go here
- */
-/**
- * Clear inner floats
- */
-.clearfix::after {
-  clear: both;
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
   content: '';
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+a {
+  outline: 0px none;
+  text-decoration: none;
+}
+
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  /* Safari/Chrome, other WebKit */
+  /* Firefox, other Gecko */
+  box-sizing: border-box;
+  /* Opera/IE 8+ */
+}
+
+textarea {
+  overflow: auto;
+}
+
+button, input, select, textarea {
+  font-family: inherit;
+  /* 1 */
+  font-size: 100%;
+  /* 2 */
+  margin: 0;
+  /* 3 */
+}
+
+button, input, select, option {
+  line-height: 1.428571429;
+}
+
+img {
+  vertical-align: middle;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+}
+
+/* defaults on strong and em */
+strong {
+  font-weight: 700;
+  vertical-align: baseline;
+}
+
+em {
+  font-style: italic;
+  vertical-align: baseline;
+}
+
+sup {
+  vertical-align: super;
+  line-height: 0;
+  font-size: 75%;
+}
+
+sub {
+  vertical-align: sub;
+  line-height: 0;
+  font-size: 75%;
+}
+
+/* === === === separator bars === === === */
+hr {
+  padding: 0px;
+  margin: 0px;
+  border: 0px none;
+  height: 0px;
+  clear: both;
+}
+
+hr[data-role*="only-clear"] {
+  padding: 0px;
+  margin: 0px;
+  border: 0px none;
+  height: 0px;
+  clear: both;
+}
+
+hr[data-role*='separator'] {
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #4e4e4e;
+}
+
+hr[data-role*="inner"] {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+hr[data-role*="only-top"] {
+  margin-bottom: 0px;
+}
+
+hr[data-role*="only-bottom"] {
+  margin-top: 0px;
+}
+
+hr[data-role*="no-border"] {
+  border: 0px none;
+}
+
+/* === === === end of separator bars === === === */
+/* === === === input widths === === === */
+/* === === === end of input widths === === === */
+/* === === === input-text-css === === === */
+/* === === placeholder css === === */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+  padding: 0;
+}
+
+::-webkit-input-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+
+:-moz-placeholder {
+  /* Firefox 18- */
+  color: #999999;
+  opacity: 1;
+}
+
+::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #999999;
+  opacity: 1;
+}
+
+:-ms-input-placeholder {
+  color: #999999;
+  opacity: 1;
+}
+
+/* === === end of placeholder css === === */
+/* === === input style css === === */
+button, textarea {
+  border: 0px;
+  padding: 0px;
+  background: transparent;
+  margin: 0px;
+  resize: none;
+}
+
+input:focus, textarea:focus {
+  outline: 0px;
+}
+
+form.has-validation input:focus:required:invalid, form.has-validation input:focus:required:out-of-range {
+  border-color: red;
+  background-color: rgba(255, 0, 0, 0.02);
+}
+
+form.has-validation input:required:valid, form.has-validation input:required:in-range {
+  border-color: green;
+  background-color: rgba(0, 255, 0, 0.02);
+}
+
+/* font-sizes */
+[class^="i-btn"], a[class^="i-other-btn"], .form-control {
+  font-size: 0.75rem;
+}
+
+[class^="i-btn"][class*="i-btn-lg"], .input-lg {
+  font-size: 1rem;
+}
+
+[class^="i-btn"][class*="i-btn-sm"], [class^="i-btn"][class*="i-btn-xs"], .input-sm {
+  font-size: 0.6rem;
+}
+
+/* end of font-sizes */
+/* original sizes */
+[class^="i-btn"] {
+  padding: 6px 12px;
+}
+
+[class^="i-btn"][class*="i-btn-lg"] {
+  padding: 10px 16px;
+  /* +4px +4px */
+  line-height: 1.333333333333333;
+  border-radius: 6px;
+}
+
+[class^="i-btn"][class*="i-btn-sm"], [class^="i-btn"][class*="i-btn-xs"] {
+  padding: 5px 10px;
+  /* -1px -6px */
+  font-size: 0.65rem;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+[class^="i-btn"][class*="i-btn-xs"] {
+  padding: 1px 5px;
+}
+
+/* end of original sizes */
+[class^="i-btn"], a[class^="i-other-btn"] {
+  border-radius: 4px;
+  position: relative;
+  display: inline-block;
+  text-align: center;
+  width: auto;
+  cursor: pointer;
+  font-family: Arial, Helvetica;
+  color: white;
+  font-weight: 400;
+  text-shadow: 0px -1px 0px rgba(0, 46, 103, 0.65);
+  text-align: center;
+  line-height: 1.42857;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  height: auto;
+  vertical-align: middle;
+  border-width: 1px;
+  border-style: solid;
+}
+
+[class^="i-btn"] + [class^="i-btn"], [class^="i-other-btn"] + [class^="i-other-btn"] {
+  margin-left: 4px;
+}
+
+/* full width block */
+[class^="i-btn"][class*="i-btn-block"] {
+  width: 100%;
+  display: block;
+  margin: 0px;
+}
+
+/* icons are same size */
+[class^="i-btn"][class*="icon-"][class*="left-side"] {
+  position: relative;
+  padding-left: 38px;
+  /* padding-left must be the image size + some pixels */
+}
+
+[class^="i-btn"][class*="icon-"][class*="left-side"]:before {
+  content: " ";
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 0px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -14px;
+  width: 28px;
+  height: 28px;
+}
+
+/* margin-top must be minus half of the image size and width and height have to be the size of the image */
+[class^="i-btn"][class*="icon-"][class*="right-side"] {
+  position: relative;
+  padding-right: 38px;
+}
+
+[class^="i-btn"][class*="icon-"][class*="right-side"]:before {
+  content: " ";
+  background-repeat: no-repeat;
+  background-position: center center;
+  top: 0px;
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -14px;
+  width: 28px;
+  height: 28px;
+}
+
+/* either set them as content or as a background-image if you have a sprite */
+[class^="i-btn"][class*="icon-edit"]:before {
+  content: "";
+  background-image: url("./../uihp-icon-edit.png");
+  /* background-image */
+}
+
+/* btn borders */
+[class^="i-btn"][class*="i-btn-main"], [class^="i-other-btn"][class*="i-btn-main"] {
+  border-color: #226dc8;
+}
+
+[class^="i-btn"][class*="i-btn-info"], [class^="i-other-btn"][class*="i-btn-info"] {
+  border-color: #2c96b4;
+}
+
+[class^="i-btn"][class*="i-btn-success"], [class^="i-other-btn"][class*="i-btn-info"] {
+  border-color: #4cae4c;
+}
+
+[class^="i-btn"][class*="i-btn-default"], [class^="i-other-btn"][class*="i-btn-default"] {
+  text-shadow: 0px 0px 0px black;
+  color: #333333;
+}
+
+/* end of btn borders */
+/* sctructure button is untested ensure line-height on span is bigger than the largest image else you wil get unequal buttons, good system if you have 2-3 sets of icons of different sizes but same sizes common together makes 3 classes of line-heights, one ofr each and add the class to them 
+<a class='other-btn'>
+	<i><img src='/path/to/img/' /></i>
+	<span>Button text here</span>
+</a>
+<button class='other-btn'>
+	<i><img src="./path/to/img' /></i>
+	<span>button text here </span>
+</button>
+*/
+[class^="i-other-btn"] {
+  padding: 0px 8px;
+  position: relative;
   display: table;
 }
 
-/**
-   * Main content containers
-   * 1. Make the container full-width with a maximum width
-   * 2. Center it in the viewport
-   * 3. Leave some space on the edges, especially valuable on small screens
-   */
-.container {
-  margin-left: auto;
-  /* 2 */
-  margin-right: auto;
-  /* 2 */
-  padding-left: 20px;
-  /* 3 */
-  padding-right: 20px;
-  /* 3 */
-  width: 100%;
-  /* 1 */
+[class^="i-other-btn"] span {
+  padding: 0px 6px;
+  display: table-cell;
+  vertical-align: middle;
 }
 
+[class^="i-other-btn"] i {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+[class^="i-other-btn"] img {
+  display: block;
+}
+
+/* end of system to use if the icons are different sizes */
+/* some default inputs */
+.form-control {
+  height: auto;
+  background-color: white;
+  background-image: none;
+  border-radius: 4px;
+  -webkit-box-shadow: inset 2px 2px 1px -1px rgba(0, 0, 0, 0.075);
+          box-shadow: inset 2px 2px 1px -1px rgba(0, 0, 0, 0.075);
+  color: #555555;
+  width: 100%;
+  display: block;
+  padding: 6px 12px;
+  line-height: 1.428571429;
+  border: 1px solid #cccccc;
+  transition: all 0.25s ease-in-out;
+  -webkit-transition: all 0.25s ease-in-out;
+  vertical-align: middle;
+}
+
+.form-control:focus {
+  border-color: #66afe9;
+  -webkit-box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.input-lg {
+  height: auto;
+  padding: 10px 16px;
+  font-size: 1.15rem;
+  line-height: 1.33;
+  border-radius: 6px;
+}
+
+.input-sm {
+  height: auto;
+  padding: 5px 10px;
+  font-size: 0.65rem;
+  line-height: 1.5;
+  border-radius: 3px;
+}
+
+textarea.form-control {
+  height: auto;
+}
+
+@-moz-document url-prefix() {
+  select.form-control {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+}
+
+select.form-control option {
+  padding: 6px 12px;
+}
+
+select.input-sm {
+  /* height: 30px; line-height: 30px;*/
+}
+
+select.input-sm.form-control option {
+  padding: 5px 10px;
+}
+
+select.input-lg {
+  /* height: 45px; line-height: 45px; */
+}
+
+select.input-lg.form-control option {
+  padding: 10px 16px;
+}
+
+.form-row-inline > * {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+.form-row-inline > *:first-child {
+  margin-left: 0px;
+}
+
+.form-row, .form-row-inline {
+  margin-top: 10px;
+}
+
+.form-row:first-child, .form-row-inline:first-child {
+  margin-top: 0px;
+}
+
+.form-group {
+  margin-top: 10px;
+  display: table;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.form-group:first-child {
+  margin-top: 0px;
+}
+
+.form-group > * {
+  display: table-row;
+}
+
+.form-group > *:first-child > * {
+  padding-top: 0px;
+}
+
+.form-group > * > * {
+  display: table-cell;
+  padding-top: 10px;
+  width: 100%;
+  vertical-align: middle;
+}
+
+.form-group > * > *:first-child {
+  text-align: right;
+  padding-right: 10px;
+  white-space: nowrap;
+  width: auto;
+}
+
+@media screen and (max-width: 736px) {
+  .form-group {
+    display: block;
+  }
+  .form-group > * {
+    display: block;
+  }
+  .form-group > * > * {
+    display: block;
+  }
+  .form-group > * > *:first-child {
+    text-align: left;
+    white-space: normal;
+  }
+}
+
+.search-form-one-row {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-form-one-row .form-row {
+  position: relative;
+  overflow: hidden;
+}
+
+.search-form-one-row input {
+  border-radius: 0px;
+}
+
+.search-form-one-row button[type='submit'] {
+  background-image: url("./../images/icon-search.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  z-index: 5;
+}
+
+/* 					
+				<div class='search-form-one-row'>	
+					<form action="#" method="post">
+						<div class="form-row">
+							<input type="text" class="form-control" placeholder="Search snow conditions by city" />
+							<button type="submit"></button>
+						</div>
+					</form>
+				</div>
+*/
+.form-row-special {
+  margin-top: 10px;
+}
+
+.form-row-special button {
+  float: right;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.form-row-special .form-control-container {
+  overflow: hidden;
+}
+
+.form-row-special input, .form-row-special select {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+
+/* 			<div class="form-row-special">
+				<button class="i-btn i-btn-bb-custom" type="submit">Sign Up</button>
+				<div class="form-control-container">
+					<input type="email" required="required" class="form-control" placeholder="your@email.address" />
+				</div>
+			</div> */
+.radio, .checkbox {
+  display: block;
+  vertical-align: middle;
+}
+
+.radio-inline, .checkbox-inline {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+.radio-inline + .radio-inline, .checkbox-inline + .checkbox-inline, .radio-inline + .checkbox-inline, .checkbox-inline + .radio-inline {
+  margin-left: 10px;
+}
+
+.radio label, .checkbox label {
+  cursor: pointer;
+}
+
+input[type="checkbox"], input[type="radio"] {
+  display: none;
+}
+
+input[type="checkbox"] + label {
+  position: relative;
+  padding-right: 0px;
+  display: block;
+  line-height: 20px;
+  min-height: 20px;
+  cursor: pointer;
+  padding-left: 24px;
+}
+
+input[type="checkbox"] + label:before {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-image: url("./../images/button-checkbox.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label:before {
+  background-position: -20px top;
+}
+
+input[type="radio"] + label {
+  position: relative;
+  padding-left: 0px;
+  display: block;
+  min-height: 20px;
+  padding-left: 24px;
+  cursor: pointer;
+}
+
+input[type="radio"] + label:before {
+  content: " ";
+  position: absolute;
+  left: 0px;
+  top: 50%;
+  margin-top: -10px;
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  background-image: url("./../images/button-radio.png");
+  background-repeat: no-repeat;
+  background-position: left top;
+  cursor: pointer;
+}
+
+input[type="radio"]:checked + label:before {
+  background-position: -20px top;
+}
+
+/* 
+<input type="checkbox" id="c1" name="cc" />
+<label for="c1"><span></span>Check Box 1</label>
+
+<input type="radio" id="c1" name="cc" />
+<label for="c1" onclick="" ><span></span>RADIO BOX 1</label>
+*/
+/* === === end of input style css === === */
+/* === === === end of input-text-css === === === */
+/* === === === buttons css === === === */
+/* === === === end of buttons css === === === */
+/* === === === form buttons css === === === */
+/* === === custom form upload button === === */
+.button-select-file-202px-32px {
+  position: relative;
+  width: 202px;
+  height: 32px;
+  overflow: hidden;
+}
+
+.button-select-file-202px-32px span.button {
+  background-image: url("./../images/buttons-inputs/button-brown-32px.png");
+  background-repeat: repeat-x;
+  background-position: left top;
+  width: 202px;
+  height: 32px;
+  cursor: pointer;
+  line-height: 32px;
+  color: #f9f9ec;
+  text-align: center;
+  font-size: 16px;
+  border-radius: 5px;
+  display: block;
+  font-weight: bold;
+  font-family: Arial, Helvetica;
+}
+
+.button-select-file-202px-32px input {
+  cursor: pointer;
+  height: 100%;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  filter: alpha(opacity=1);
+  -moz-opacity: 0.01;
+  opacity: 0.01;
+  font-size: 100px;
+}
+
+/* === === end of custom form upload button === === */
+/* === === == end of form buttons css === === === */
 /**
-   * Hide text while making it readable for screen readers
-   * 1. Needed in WebKit-based browsers because of an implementation bug;
-   *    See: https://code.google.com/p/chromium/issues/detail?id=457146
-   */
+ * All @Font-face font declarations go here
+ */
 .hide-text {
   overflow: hidden;
   padding: 0;
@@ -81,11 +753,6 @@ html {
   white-space: nowrap;
 }
 
-/**
-   * Hide element while making it readable for screen readers
-   * Shamelessly borrowed from HTML5Boilerplate:
-   * https://github.com/h5bp/html5-boilerplate/blob/master/src/css/main.css#L119-L133
-   */
 .visually-hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -198,12 +865,59 @@ html {
 }
 
 /**
- * This SCSS file imports everything from this folder.
- * These SCSS files denote modules/components such as: buttons/dropdown/navigation/carousels/etc
+ * The layout/ folder contains everything that takes part in laying out the site or application. This folder could have stylesheets for the main parts of the site (header, footer, navigation, sidebar…), the grid system or even CSS styles for all the forms.
+ */
+/** 
+ * For smaller components, there is the component/ folder. While layout/ is macro (defining the global wireframe), components/ is more focused on widgets. It contains all kind of specific modules like a slider, a loader, a widget, and basically anything along those lines. There are usually a lot of files in components/ since the whole site/application should be mostly composed of tiny modules.
+ */
+/** Alerts SCSS */
+.alert-primary, .alert-success, .alert-warning, .alert-danger {
+  padding: 1rem 2rem;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 5px;
+  position: relative;
+}
+
+.alert-primary *, .alert-success *, .alert-warning *, .alert-danger * {
+  margin-bottom: 1rem;
+}
+
+.alert-primary *:last-child, .alert-success *:last-child, .alert-warning *:last-child, .alert-danger *:last-child {
+  margin-bottom: 0;
+}
+
+.alert-primary {
+  color: #007bff;
+  border-color: #0062cc;
+  background: #e6f2ff;
+}
+
+.alert-success {
+  color: #28a745;
+  border-color: #1e7e34;
+  background: #eaf6ec;
+}
+
+.alert-warning {
+  color: #a17e14;
+  border-color: #745a0e;
+  background: #f6f2e8;
+}
+
+.alert-danger {
+  color: #dc3545;
+  border-color: #bd2130;
+  background: #fcebec;
+}
+
+/* === === === end of alerts === === === */
+/**
+ * If you have page-specific styles, it is better to put them in a pages/ folder, in a file named after the page. For instance, it’s not uncommon to have very specific styles for the home page hence the need for a _home.scss file in pages/.
+ * 
  */
 /**
- * This SCSS file imports all the SCSS files from this folder
- * These files denote specific scss for different page and page types
+ * Shamefull Dispray
  */
 /**
  * Space for Vendor SCSS below 
@@ -214,14 +928,7 @@ p {
 
 @media screen and (min-width: 0px) {
   p {
-    /* xs */
     border: 5px;
-  }
-}
-
-@media screen and (max-width: 991px) {
-  p {
-    /* md */
   }
 }
 
