@@ -2,12 +2,13 @@
  * MAIN Application SCSS FIle. Imports everything into this.
  */
 
-@import 'abstracts/module'; // This should go first
-@import 'vendors/module'; // This is second
-@import 'base/module'; // This is 3rd
-@import 'layout/module'; // AKA Layout
-@import 'components/module'; // AKA Components
-@import 'pages/module'; // AKA Page specific css 
+@import 'abstracts/module'; // This should go first Fn/Mixins/Variables
+@import 'vendors/module'; // This is second Random Vendor SCSS Copied as Is
+@import 'base/module'; // This is 3rd Reset/sprite/colors/fonts/helpers/etc
+@import 'layout/module'; // AKA Layout this is 4th
+@import 'components/module'; // AKA Components this is 5th
+@import 'pages/module'; // AKA Page specific css this is 6th
+@import 'themes/module'; // Aka Themes this is 7th and last
 
 /**
  * Shamefull Dispray
