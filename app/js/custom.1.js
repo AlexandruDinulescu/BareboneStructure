@@ -1,1 +1,5 @@
-console.log('beta');
+const someObj = {
+    'key' : 'prop'
+};
+
+export default someObj;

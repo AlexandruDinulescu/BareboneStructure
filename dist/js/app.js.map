@@ -1,1 +1,1 @@
-{"version":3,"sources":["js/app.js"],"names":["console","log"],"mappings":"YAAAA,SAAQC,IAAI","file":"app.js","sourcesContent":["console.log('beta');\n\n"]}
+{"version":3,"sources":["js/app.js"],"names":["_custom","require","_custom3","console","log","_custom2","default","key","_custom4","otherKey"],"mappings":"aAAA,IAAAA,QAAAC,QAAA,uDACAC,SAAAD,QAAA,+HAEAE,QAAQC,IAAIC,SAAAC,QAAEC,KACdJ,QAAQC,IAAII,SAAAF,QAAEG","file":"app.js","sourcesContent":["import A from './custom.1';\nimport B from './custom2';\n\nconsole.log(A.key);\nconsole.log(B.otherKey);\n"]}

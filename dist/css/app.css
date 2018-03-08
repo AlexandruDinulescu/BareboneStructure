@@ -917,6 +917,9 @@ input[type="radio"]:checked + label:before {
  * 
  */
 /**
+ * This is the themes folder, you can use this to overwrite the existing page to create a new theme
+ */
+/**
  * Shamefull Dispray
  */
 /**
