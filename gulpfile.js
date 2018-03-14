@@ -102,6 +102,7 @@ let bundlePaths = {
     dist: 'dist/js/main.js'
 };
 
+// https://github.com/gulpjs/gulp/tree/master/docs/recipes
 gulp.task('js', function () {
     return gulp.src(bundlePaths.src, {
         read: false
