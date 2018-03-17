@@ -87,7 +87,7 @@ gulp.task('copy', function () {
         }))
         .pipe(gulpif('*.js', sourcemaps.init()))
         .pipe(gulpif('*.js', babel({
-            presets: ['env']
+            presets: ['@babel/preset-env']
         })))
         .pipe(gulpif('*.js', uglify({
             compress: {
