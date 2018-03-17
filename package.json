@@ -16,18 +16,14 @@
     "@types/jquery": "^3.3.0",
     "gulp": "^3.9.1",
     "gulp.spritesmith": "^6.9.0",
-    "jquery": "^3.3.1",
-    "vinyl-buffer": "^1.0.1",
-    "vinyl-source-stream": "^2.0.0"
+    "jquery": "^3.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
     "ajv": "^6.2.1",
     "ajv-keywords": "^3.1.0",
-    "babel-preset-env": "^1.4.0",
     "browser-sync": "^2.23.6",
-    "browserify": "^16.1.1",
     "eslint": "^4.18.0",
     "gulp-autoprefixer": "^5.0.0",
     "gulp-babel": "^8.0.0-beta.2",
