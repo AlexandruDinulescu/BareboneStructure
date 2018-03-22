@@ -1,0 +1,101 @@
+// SCSS variables are information about icon's compiled state, stored under its original file name
+//
+// .icon-home {
+//   width: $icon-home-width;
+// }
+// $: '';
+// $: ;
+// $: ;
+// $: ;
+// $: ;
+// $: ;
+// $: ;
+// $: ;
+// $: ;
+// $: '';
+// $spritesheet-width: 360px;
+// $spritesheet-height: 273px;
+// $spritesheet-image: './img/sprite.png';
+// The large array-like variables contain all information about a single icon
+// $icon-home: x y offset_x offset_y width height total_width total_height image_path;
+//
+// At the bottom of this section, we provide information about the spritesheet itself
+// $spritesheet: width height image $spritesheet-sprites;
+$button-checkbox: (49px, 244px, -49px, -244px, 40px, 20px, 360px, 273px, './img/sprite.png', 'button-checkbox', );
+$button-radio: (109px, 244px, -109px, -244px, 40px, 20px, 360px, 273px, './img/sprite.png', 'button-radio', );
+$icon-coin: (0px, 122px, 0px, -122px, 102px, 102px, 360px, 273px, './img/sprite.png', 'icon-coin', );
+$icon-contact-hover: (0px, 0px, 0px, 0px, 170px, 102px, 360px, 273px, './img/sprite.png', 'icon-contact-hover', );
+$icon-contact: (190px, 0px, -190px, 0px, 170px, 102px, 360px, 273px, './img/sprite.png', 'icon-contact', );
+$icon-google-plus: (0px, 244px, 0px, -244px, 29px, 29px, 360px, 273px, './img/sprite.png', 'icon-google-plus', );
+$icon-list: (200px, 244px, -200px, -244px, 10px, 10px, 360px, 273px, './img/sprite.png', 'icon-list', );
+$icon-news-hover: (122px, 122px, -122px, -122px, 102px, 102px, 360px, 273px, './img/sprite.png', 'icon-news-hover', );
+$icon-news: (244px, 122px, -244px, -122px, 102px, 102px, 360px, 273px, './img/sprite.png', 'icon-news', );
+$icon-search: (169px, 244px, -169px, -244px, 11px, 11px, 360px, 273px, './img/sprite.png', 'icon-search', );
+$spritesheet-sprites: ($button-checkbox, $button-radio, $icon-coin, $icon-contact-hover, $icon-contact, $icon-google-plus, $icon-list, $icon-news-hover, $icon-news, $icon-search, );
+$spritesheet: (360px, 273px, './img/sprite.png', $spritesheet-sprites, );
+
+// The provided mixins are intended to be used with the array-like variables
+//
+// .icon-home {
+//   @include sprite-width($icon-home);
+// }
+//
+// .icon-email {
+//   @include sprite($icon-email);
+// }
+//
+// Example usage in HTML:
+//
+// `display: block` sprite:
+// <div class="icon-home"></div>
+//
+// To change `display` (e.g. `display: inline-block;`), we suggest using a common CSS class:
+//
+// // CSS
+// .icon {
+//   display: inline-block;
+// }
+//
+// // HTML
+// <i class="icon icon-home"></i>
+@mixin sprite-width($sprite) {
+    width: nth($sprite, 5);
+}
+
+@mixin sprite-height($sprite) {
+    height: nth($sprite, 6);
+}
+
+@mixin sprite-position($sprite) {
+    $sprite-offset-x: nth($sprite, 3);
+    $sprite-offset-y: nth($sprite, 4);
+    background-position: $sprite-offset-x  $sprite-offset-y;
+}
+
+@mixin sprite-image($sprite) {
+    $sprite-image: nth($sprite, 9);
+    background-image: url(#{$sprite-image});
+}
+
+@mixin sprite($sprite) {
+    display: inline-block;
+    margin-right: 5px; 
+    background-repeat: no-repeat;
+    @include sprite-image($sprite);
+    @include sprite-position($sprite);
+    @include sprite-width($sprite);
+    @include sprite-height($sprite);
+}
+
+// The `sprites` mixin generates identical output to the CSS template
+//   but can be overridden inside of SCSS
+//
+@mixin sprites($sprites) {
+  @each $sprite in $sprites {
+    $sprite-name: nth($sprite, 10);
+    .#{$sprite-name} {
+      @include sprite($sprite);
+    }
+  }
+}
+@include sprites($spritesheet-sprites);

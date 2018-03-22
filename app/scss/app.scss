@@ -2,35 +2,11 @@
  * MAIN Application SCSS FIle. Imports everything into this.
  */
 
-@import 'abstracts/module'; // This should go first Fn/Mixins/Variables
-@import 'vendors/module'; // This is second Random Vendor SCSS Copied as Is
-@import 'base/module'; // This is 3rd Reset/sprite/colors/fonts/helpers/etc
-@import 'layout/module'; // AKA Layout this is 4th
-@import 'components/module'; // AKA Components this is 5th
-@import 'pages/module'; // AKA Page specific css this is 6th
-@import 'themes/module'; // Aka Themes this is 7th and last
+// import Bootstrap overwrites
+@import '_website/_BSOverwrite/bsVarsOverwrites';
 
-/**
- * Shamefull Dispray
- */
-@import 'shame'; 
+// import Bootstrap
+@import '_bootstrap/bootstrap';
 
-
-/**
- * Space for Vendor SCSS below 
- */
-
-p {
-    border: 0px none;
-    @include media-from(xs) {
-        border: 5px;
-    }
-    @include media-to(md) {
-
-    }
-}
-
-
-body {
-     color: red;  
-}
+// import Website 
+@import '_website/main';

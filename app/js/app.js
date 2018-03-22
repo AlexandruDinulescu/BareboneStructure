@@ -3,3 +3,4 @@ import B from './custom2';
 
 console.log(A.key);
 console.log(B.otherKey);
+console.log('cancer');  
