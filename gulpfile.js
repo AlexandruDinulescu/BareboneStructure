@@ -185,9 +185,7 @@ b.transform(['babelify', {
 
 function bundle() {
     return b.bundle()
-        .pipe(plumber({
-            errorHandler: reportError
-        }))
+        .on('error', reportError)
         .pipe(source('app.js'))
         .pipe(buffer())
         .pipe(sourcemaps.init())
@@ -202,7 +200,7 @@ function bundle() {
 }
 
 // SCSS => CSS 
-gulp.task('css', function () {
+gulp.task('scss', function () {
     return gulp.src(gulpPath.css.input)
         .pipe(sourcemaps.init())
         .pipe(sassdoc())
@@ -244,13 +242,13 @@ gulp.task('build', function () {
     runSequence('clean', 'copyjQuery', 'copyBS-scss', 'copyBS-js', 'copyLib', 'copyJS', 'copyHtml', 'sprite', 'images', 'css');
 });
 
-gulp.task('watch', ['browserSync', 'css'], function () {
+gulp.task('watch', ['scss', 'copyJS'], function () {
     gulp.watch(gulpPath.images.input, function () {
         runSequence('sprite', 'images');
     });
-    gulp.watch('app/scss/**/*.scss', ['css']);
+    gulp.watch('app/scss/**/*.scss', ['scss']);
     gulp.watch(gulpPath.jsLib.input, ['copyLib']);
-    gulp.watch(gulpPath.JS.input, ['copyJS']);
+    gulp.watch(['app/js/**/*.*', '!app/js/lib/*.*'], ['copyJS']);
     gulp.watch(gulpPath.html.input, ['copyHtml']);
 });
 
