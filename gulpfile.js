@@ -250,7 +250,7 @@ gulp.task('spriteImgCombo', function(){
     runSequence('sprite', 'images');
 });
 
-gulp.task('watch', ['scss', 'copyJS', 'spriteImgCombo'], function () {
+gulp.task('watch', ['browserSync', 'scss', 'copyJS', 'spriteImgCombo'], function () {
     gulp.watch(gulpPath.images.input, function () {
         runSequence('sprite', 'images');
     });
