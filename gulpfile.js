@@ -39,8 +39,8 @@ var gulpPath = {
             return gulpPath.appDir + 'img/sprite/*.png';
         },
         imgName: 'sprite.png',
-        cssName: 'base/_sprite.scss',
-        imgPath: './img/sprite.png',
+        cssName: '_sprite.scss',
+        imgPath: './../img/sprite.png',
         get cssTemplate() {
             return gulpPath.appDir + 'scss-templates/scss.template.handlebars';
         },
@@ -48,7 +48,7 @@ var gulpPath = {
             return gulpPath.appDir + 'img/';
         },
         get outputScss() {
-            return gulpPath.appDir + 'scss/';
+            return gulpPath.appDir + 'scss/_website/base/';
         }
     },
     jQuery: {
@@ -135,7 +135,8 @@ gulp.task('sprite', function () {
         // retinaImgPath: './img/sprite@2x.png',
         cssTemplate: gulpPath.spriteData.cssTemplate,
     }));
-
+    log(gulpPath.spriteData.input);
+    
     spriteData.img.pipe(gulp.dest(gulpPath.spriteData.outputImg));
     spriteData.css.pipe(gulp.dest(gulpPath.spriteData.outputScss));
 
