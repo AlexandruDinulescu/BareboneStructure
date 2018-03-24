@@ -243,7 +243,14 @@ gulp.task('build', function () {
     runSequence('clean', 'copyjQuery', 'copyBS-scss', 'copyBS-js', 'copyLib', 'copyJS', 'copyHtml', 'sprite', 'images', 'css');
 });
 
-gulp.task('watch', ['scss', 'copyJS'], function () {
+/** 
+ * Gulp Sprite Combo
+ */
+gulp.task('spriteImgCombo', function(){
+    runSequence('sprite', 'images');
+});
+
+gulp.task('watch', ['scss', 'copyJS', 'spriteImgCombo'], function () {
     gulp.watch(gulpPath.images.input, function () {
         runSequence('sprite', 'images');
     });
