@@ -78,6 +78,7 @@ ${{spritesheet_info.strings.name}}: ({{spritesheet.px.width}}, {{spritesheet.px.
 }
 
 @mixin sprite-position($sprite) {
+    background-repeat: no-repeat;
     $sprite-offset-x: nth($sprite, 3);
     $sprite-offset-y: nth($sprite, 4);
     background-position: $sprite-offset-x  $sprite-offset-y;
@@ -89,13 +90,16 @@ ${{spritesheet_info.strings.name}}: ({{spritesheet.px.width}}, {{spritesheet.px.
 }
 
 @mixin sprite($sprite) {
-    display: inline-block;
-    margin-right: 5px; 
-    background-repeat: no-repeat;
-    @include sprite-image($sprite);
-    @include sprite-position($sprite);
-    @include sprite-width($sprite);
-    @include sprite-height($sprite);
+    &::before {
+        display: inline-block;
+        margin-right: 5px; 
+        background-repeat: no-repeat;
+        vertical-align: middle;
+        @include sprite-image($sprite);
+        @include sprite-position($sprite);
+        @include sprite-width($sprite);
+        @include sprite-height($sprite);
+    }
 }
 {{/if}}
 {{/block}}

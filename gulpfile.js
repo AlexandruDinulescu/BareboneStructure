@@ -31,6 +31,11 @@ var reportError = function (error) {
     this.emit('end');
 };
 
+// TO DO 
+// ADD SUPERFISH []
+// REFACTOR PATHS INTO TASK LIST (you can glob multiple inputs for 1 output)
+
+
 var gulpPath = {
     appDir: 'app/',
     distDir: 'dist/',
