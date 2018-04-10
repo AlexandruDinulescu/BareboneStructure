@@ -5,7 +5,7 @@
 
 /// Get Color From $Colors Map
 /// Easier than just write map-get, write color($key)
-/// @group Colors
+/// @group Functions
 /// @param {string} $color - $color key from $colors map
 /// @require $colors
 /// @example 
@@ -19,22 +19,11 @@
         @error "No Key Found: #{$color}.";  
     }
 }
-/// Table creation function
-/// @group SCSS
-@each $breakpointKey, $breakpointValue in $grid-breakpoints {
-    @each $breakpoint2Key, $breakpoint2Value in $grid-breakpoints {
-        .table-#{$breakpointKey}-#{$breakpoint2Key} {
-            padding-left: map-get($map: $custom-table-cell-padding, $key: $breakpointKey );
-            padding-right: map-get($map: $custom-table-cell-padding, $key: $breakpointKey);
-            padding-top: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key );
-            padding-bottom: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key ); 
-        }
-    }
-}
 /// Easy Get Sizes from a predefined Bootstrap Spacer Map
 /// Easier than write map-get($spacers, $size)
 /// Converter To REM
-/// @param {number} $size - $size out from the $spacers map
+/// @group Functions
+/// @param {number} $size - size in pixels size
 /// @require $spacers
 /// @example 
 ///     .example {
@@ -45,5 +34,20 @@
         @return map-get($map: $spacers, $key: $number);
     } @else {
         @error "No Size Found: #{$number}.";
+    }
+}
+/// Table creation function
+/// @group Functions
+/// Automatic generation of a custom bootstrap-like tableled layout. Make sure 
+/// the keys from $grid-breakpoints map, match the keys from the 
+/// $custom-table-cell-padding. 
+@each $breakpointKey, $breakpointValue in $grid-breakpoints {
+    @each $breakpoint2Key, $breakpoint2Value in $grid-breakpoints {
+        .table-#{$breakpointKey}-#{$breakpoint2Key} {
+            padding-left: map-get($map: $custom-table-cell-padding, $key: $breakpointKey );
+            padding-right: map-get($map: $custom-table-cell-padding, $key: $breakpointKey);
+            padding-top: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key );
+            padding-bottom: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key ); 
+        }
     }
 }

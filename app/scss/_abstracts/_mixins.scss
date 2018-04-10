@@ -32,7 +32,7 @@
 }
 
 /// Clearfix mixin just include where needed
-/// @group Utils
+/// @group Mixins
 /// @example
 ///     .element {
 ///         @include clearfix();
@@ -46,7 +46,7 @@
 }
 
 /// Hide text while making it readable for screen readers
-/// @group Utils
+/// @group Mixins
 /// @example 
 ///     .element {
 ///         @include hide-text();
@@ -59,7 +59,7 @@
 }
 
 /// Hide element while making it readable for screen readers
-/// @group Utils
+/// @group Mixins
 /// @example 
 ///     .element {
 ///          @include visually-hidden()
@@ -75,7 +75,7 @@
     width: 1px;
 }
 /// Vertical Central An Absolutely Positioned Elemenet
-/// @group Utils
+/// @group Mixins
 /// @example 
 ///     .example {
 ///         @include v-align();
