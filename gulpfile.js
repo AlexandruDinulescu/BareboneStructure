@@ -19,6 +19,7 @@ const gulp = require('gulp'),
     babelify = require('babelify'),
     source = require('vinyl-source-stream'),
     buffer = require('vinyl-buffer'),
+    rename = require('gulp-rename'),
     spritesmith = require('gulp.spritesmith');
 
 var reportError = function (error) {
@@ -35,6 +36,26 @@ var reportError = function (error) {
 // ADD SUPERFISH []
 // REFACTOR PATHS INTO TASK LIST (you can glob multiple inputs for 1 output)
 
+var rootFolder = {
+    appDir : 'app/',
+    distDir : 'dist/' 
+};
+
+var nodePaths = {
+    JS: {
+        jQuery : 'node_modules/jquery/dist/jquery.min.js',
+        bootstrap : 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js',
+        ekkoLightbox : 'node_modules/ekko-lightbox/dist/ekko-lightbox.min.js',
+        superFish : 'node_modules/superfish/dist/js/superfish.min.js',
+        hoverIntent : 'node_modules/superfish/dist/js/hoverIntent.js',
+    },
+    SCSS: {
+        bootstrap : 'node_modules/bootstrap/scss/**/*.*',
+    },
+    CSS: {
+        ekkoLightbox : 'node_modules/ekko-lightbox/dist/ekko-lightbox.css',
+    }
+};
 
 var gulpPath = {
     appDir: 'app/',
@@ -56,18 +77,15 @@ var gulpPath = {
             return gulpPath.appDir + 'scss/_website/base/';
         }
     },
-    jQuery: {
-        input: 'node_modules/jquery/dist/jquery.min.js',
-        get output() {
-            return gulpPath.appDir + 'js/lib/';
-        }
-    },
     jsLib: {
         get input() {
             return gulpPath.appDir + 'js/lib/*.*';
         },
         get output() {
             return gulpPath.distDir + 'js/lib/';
+        }, 
+        get watch() {
+            return gulpPath.appDir + 'js/lib/*.*';
         }
     },
     JS: {
@@ -76,20 +94,13 @@ var gulpPath = {
         },
         get output() {
             return gulpPath.distDir + 'js/';
-        }
-    },
-    bootstrap: {
-        input: {
-            scss: 'node_modules/bootstrap/scss/**/*.*',
-            js: 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js'
         },
-        output: {
-            get scss() {
-                return gulpPath.appDir + 'scss/_bootstrap/';
-            },
-            get js() {
-                return gulpPath.appDir + 'js/lib/';
-            }
+        get watch() {
+            return [
+                gulpPath.appDir + 'js/**/*.js',
+                '!' + gulpPath.appDir + 'js/lib/**/*.*',
+                '!' + gulpPath.appDir + 'js/lib/' 
+            ];
         }
     },
     images: {
@@ -101,22 +112,35 @@ var gulpPath = {
         },
         get output() {
             return gulpPath.distDir + 'img/';
+        },
+        get watch() {
+            return [
+                gulpPath.images.input,
+                gulpPath.images.noSprite,
+                gulpPath.images.noSprite + '**/*'
+            ];
         }
     },
     html: {
         get input() {
-            return gulpPath.appDir + '*.html';
+            return gulpPath.appDir + '**/*.html';
         },
         get output() {
             return gulpPath.distDir;
+        },
+        get watch() {
+            return gulpPath.appDir + '**/*.html';
         }
     },
-    css: {
+    scss: {
         get input() {
             return gulpPath.appDir + 'scss/app.scss';
         },
         get output() {
             return gulpPath.distDir + 'css/';
+        },
+        get watch() {
+            return gulpPath.appDir + 'scss/**/*.scss';
         }
     }
 };
@@ -147,20 +171,28 @@ gulp.task('sprite', function () {
 
 });
 // Copy Data 
-
-gulp.task('copyjQuery', function () {
-    return gulp.src(gulpPath.jQuery.input)
-        .pipe(gulp.dest(gulpPath.jQuery.output));
+gulp.task('copyNodeJS', function(){
+    return gulp.src([
+        nodePaths.JS.jQuery,
+        nodePaths.JS.bootstrap,
+        nodePaths.JS.ekkoLightbox,
+        nodePaths.JS.superFish,
+        nodePaths.JS.hoverIntent
+    ]).pipe(gulp.dest(rootFolder.appDir + 'js/lib/'));
 });
 
-gulp.task('copyBS-scss', function () {
-    return gulp.src(gulpPath.bootstrap.input.scss)
-        .pipe(gulp.dest(gulpPath.bootstrap.output.scss));
+gulp.task('copyNodeSCSS', function(){
+    return gulp.src([
+        nodePaths.CSS.ekkoLightbox
+    ]).pipe(rename({
+        extname: '.scss'
+    })).pipe(gulp.dest(rootFolder.appDir + 'scss/_website/vendors/'));
 });
 
-gulp.task('copyBS-js', function () {
-    return gulp.src(gulpPath.bootstrap.input.js)
-        .pipe(gulp.dest(gulpPath.bootstrap.output.js));
+gulp.task('copyBoostrapSCSS', function () {
+    return gulp.src([
+        nodePaths.SCSS.bootstrap,
+    ]).pipe(gulp.dest(rootFolder.appDir + 'scss/_bootstrap/'));
 });
 
 gulp.task('copyLib', function () {
@@ -182,7 +214,7 @@ var b = browserify(gulpPath.JS.input, {
     fullPaths: false
 });
 
-gulp.task('copyJS', bundle);
+gulp.task('bundleJS', bundle);
 b.on('update', bundle);
 b.transform(['babelify', {
     presets: ['@babel/preset-env'],
@@ -207,7 +239,7 @@ function bundle() {
 
 // SCSS => CSS 
 gulp.task('scss', function () {
-    return gulp.src(gulpPath.css.input)
+    return gulp.src(gulpPath.scss.input)
         .pipe(sourcemaps.init())
         .pipe(sassdoc())
         .pipe(sass({
@@ -217,7 +249,7 @@ gulp.task('scss', function () {
             browsers: ['last 2 versions']
         }))
         .pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest(gulpPath.css.output))
+        .pipe(gulp.dest(gulpPath.scss.output))
         .pipe(browserSync.stream());
 });
 
@@ -245,7 +277,7 @@ gulp.task('browserSync', function () {
  * Run Tasks 1st run build then watch
  */
 gulp.task('build', function () {
-    runSequence('clean', 'copyjQuery', 'copyBS-scss', 'copyBS-js', 'copyLib', 'copyJS', 'copyHtml', 'sprite', 'images', 'css');
+    runSequence('clean', 'copyNodeJS', 'copyNodeSCSS', 'copyBoostrapSCSS', 'copyLib', 'bundleJS', 'copyHtml', 'sprite', 'images', 'scss');
 });
 
 /** 
@@ -255,13 +287,12 @@ gulp.task('spriteImgCombo', function(){
     runSequence('sprite', 'images');
 });
 
-gulp.task('watch', ['browserSync', 'scss', 'copyJS', 'spriteImgCombo'], function () {
-    gulp.watch(gulpPath.images.input, function () {
-        runSequence('sprite', 'images');
-    });
-    gulp.watch('app/scss/**/*.scss', ['scss']);
-    gulp.watch(gulpPath.jsLib.input, ['copyLib']);
-    gulp.watch(['app/js/**/*.*', '!app/js/lib/*.*'], ['copyJS']);
-    gulp.watch(gulpPath.html.input, ['copyHtml']);
+gulp.task('watch', ['browserSync', 'scss', 'bundleJS', 'spriteImgCombo'], function () {
+    gulp.watch(gulpPath.spriteData.input, ['sprite']);
+    gulp.watch(gulpPath.images.watch, ['images']);
+    gulp.watch(gulpPath.scss.watch, ['scss']);
+    gulp.watch(gulpPath.jsLib.watch, ['copyLib']);
+    gulp.watch(gulpPath.JS.watch, ['bundleJS']);
+    gulp.watch(gulpPath.html.watch, ['copyHtml']);
 });
 

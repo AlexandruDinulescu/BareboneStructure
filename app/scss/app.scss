@@ -2,11 +2,11 @@
  * MAIN Application SCSS FIle. Imports everything into this.
  */
 
-// import Bootstrap overwrites
-@import '_website/_BSOverwrite/bsVarsOverwrites';
+// import Bootstrap overwrites && Website Mixins and other functions
+@import '_abstracts/module.scss';
 
 // import Bootstrap
-@import '_bootstrap/bootstrap';
+@import '_bootstrap/bootstrap.scss';
 
 // import Website 
-@import '_website/main';
+@import '_website/module.scss';

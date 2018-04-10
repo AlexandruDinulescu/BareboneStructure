@@ -74,3 +74,13 @@
     position: absolute;
     width: 1px;
 }
+/// Vertical Central An Absolutely Positioned Elemenet
+/// @group Utils
+/// @example 
+///     .example {
+///         @include v-align();
+///     }
+@mixin v-align(){
+    top: 50%;
+    transform: translateY(-50%); 
+ }

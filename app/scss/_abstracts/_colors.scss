@@ -1,0 +1,19 @@
+////
+/// @author AlexD
+////
+
+/// Colors Map 
+/// @group Colors
+/// @type Map
+/// @prop {Color} lightest [rgb(200,200,200)]
+/// @prop {Color} lighter [#f5b180]
+$colors: (
+  lightest: rgb(200,200,200),
+  lighter: #f5b180,
+);
+
+
+$primaryColors: (
+    white: rgb(255, 255, 255),
+    black: rgb(0,0 ,0),
+)

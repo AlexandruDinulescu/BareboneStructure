@@ -3,6 +3,7 @@
     The rule of thumb for this folder is that it should not output a single line of CSS when compiled on its own. These are nothing but Sass helpers 
  */
 
+@import 'colors';
 @import 'variables';
 @import 'functions';
 @import 'mixins';

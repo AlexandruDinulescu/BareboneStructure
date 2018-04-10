@@ -1,0 +1,49 @@
+////
+/// @author AlexD
+////
+
+
+/// Get Color From $Colors Map
+/// Easier than just write map-get, write color($key)
+/// @group Colors
+/// @param {string} $color - $color key from $colors map
+/// @require $colors
+/// @example 
+///     .element { 
+///         color: color($color); 
+///     }
+@function color($color){
+    @if map-has-key($colors, $color) {
+        @return map-get($colors, $color);
+    } @else {
+        @error "No Key Found: #{$color}.";  
+    }
+}
+/// Table creation function
+/// @group SCSS
+@each $breakpointKey, $breakpointValue in $grid-breakpoints {
+    @each $breakpoint2Key, $breakpoint2Value in $grid-breakpoints {
+        .table-#{$breakpointKey}-#{$breakpoint2Key} {
+            padding-left: map-get($map: $custom-table-cell-padding, $key: $breakpointKey );
+            padding-right: map-get($map: $custom-table-cell-padding, $key: $breakpointKey);
+            padding-top: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key );
+            padding-bottom: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key ); 
+        }
+    }
+}
+/// Easy Get Sizes from a predefined Bootstrap Spacer Map
+/// Easier than write map-get($spacers, $size)
+/// Converter To REM
+/// @param {number} $size - $size out from the $spacers map
+/// @require $spacers
+/// @example 
+///     .example {
+///         padding: size($number);
+///     }
+@function size($number){
+    @if map-has-key($map: $spacers, $key: $number) {
+        @return map-get($map: $spacers, $key: $number);
+    } @else {
+        @error "No Size Found: #{$number}.";
+    }
+}

@@ -91,6 +91,7 @@ ${{spritesheet_info.strings.name}}: ({{spritesheet.px.width}}, {{spritesheet.px.
 
 @mixin sprite($sprite) {
     &::before {
+        content: '';
         display: inline-block;
         margin-right: 5px; 
         background-repeat: no-repeat;

@@ -3,14 +3,14 @@
  * This file will later be imported into the main app.scss file.
  */
 
-// abstracts (functions/mixins/other variables - these do not output scss )
-@import 'abstracts/module';
-
 // base ( colors, fonts, helpers, sprite - these output scss )
 @import 'base/module';
 
 // components (different components than bootstrap ones are included here)
 @import 'components/module';
+
+// partials (different page sections are included here) 
+@import 'partials/_module.scss';
 
 // At the end import shame.scss (content that has to be moved into other files) && styles.scss (actual website styles)
 @import 'styles';
