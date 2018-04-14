@@ -19,22 +19,16 @@
         @error "No Key Found: #{$color}.";  
     }
 }
-/// Easy Get Sizes from a predefined Bootstrap Spacer Map
-/// Easier than write map-get($spacers, $size)
-/// Converter To REM
+/// General Multipurpuse Pixel to Rem Function
+/// Converts PX -> REM
 /// @group Functions
-/// @param {number} $size - size in pixels size
-/// @require $spacers
+/// @param {number} $size - size in pixel size
 /// @example 
 ///     .example {
 ///         padding: size($number);
 ///     }
-@function size($number){
-    @if map-has-key($map: $spacers, $key: $number) {
-        @return map-get($map: $spacers, $key: $number);
-    } @else {
-        @error "No Size Found: #{$number}.";
-    }
+@function size($number) {
+    @return $number/10 * $spacer;
 }
 /// Table creation function
 /// @group Functions

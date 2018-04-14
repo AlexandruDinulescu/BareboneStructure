@@ -1,3 +1,19 @@
 html {
     font-size: $website-font-size;
 }
+
+// this is a demo to illustrate bootstrap items, remove this in production
+.demo-row {
+    margin: size(20) 0;
+
+    .modal {
+
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        z-index: 1;
+        display: block;
+    }
+}

@@ -2,67 +2,89 @@
  * SCSS Variables
  */
 
-*:last-child {
+html *:last-child {
     margin-bottom: 0;
 }
 
+/** Default DO NOT MODIFY THIS */
 $website-font-size: 62.5%; // 1rem == 10px; easier math
 
+/** Default Font Size and default line height */
+$font-size-base: 1.4rem;
+$line-height-base: 1.25;
 
+/** Default Font-Families */
+$font-family-base: "Ubuntu", "sans-serif";
+$font-family-headings: "Great Vibes";
 
-
-$font-size-base: 1.6rem;
 $body-bg: #fff;
-$body-color: #666;
+$body-color: map-get($map: $colors, $key: mainColor ); 
 
-$font-family-base: "Rosario", "sans-serif";
-$font-family-secondary: "";
 
-// 0.25 of 1 REM so each size is 2.5px
-// To calc value, put pixel size and it will be converted to rem;
-$spacer: 1rem; //10px
-$spacers: ();
-@for $i from 0 to 200 { 
-    $spacers: map-merge((
-        $i: $i/10 * $spacer
-    ), $spacers);
-};
+$headings-color: map-get($map: $colors, $key: headings );
+$headings-font-family: $font-family-headings;
+$headings-font-weight: 700;
+$headings-line-height: 1;
 
-// Bootstrap Builds The everything related to colors from this map 
-$theme-colors: ();
-$theme-colors: map-merge($map1: $colors, $map2: $theme-colors );
-
-$table-accent-bg: #f6f6f6;
-
-$headings-color: black;
-
+/** Headings Default Sizes && Display Sizes */
 $h1-font-size: 3rem;
 $h2-font-size: 2.75rem;
 $h3-font-size: 2.50rem;
 $h4-font-size: 2.25rem;
 $h5-font-size: 2.0rem;
 $h6-font-size: 1.6rem;
-$paragraph-margin-bottom: $font-size-base; 
 
-// fix bs crap convert everything to 10px base
-$border-radius: 0.4rem;
-$border-radius-lg: 0.48rem;
-$border-radius-sm: 0.32rem;
-$caret-width: 0.48rem;
+$paragraph-margin-bottom: $font-size-base; 
 
 $display1-size: 9.6rem;
 $display2-size: 8.8rem;
 $display3-size: 7.2rem;
 $display4-size: 5.6rem;
-$mark-padding: 0.32rem;
-$list-inline-padding: 0.8rem;
 
+/** Table Accent BG (even/odd) */
+$table-accent-bg: #f6f6f6;
+
+/** Create Map For Custom Table Classes
+ * Classes are called table-paddingTopSize&PaddingBottomSize-paddingLeftSide&PaddingRightSize
+ * ex: table-sm-sm / table-lg-sm (large top/bot padding, small sideways padding
+ */
 $custom-table-cell-padding: (
     xs : 0.3rem,
     sm : 0.5rem,
     md : 0.75rem,
     lg : 1rem,
     xl : 1.2rem
+);
+
+// fix bs crap convert everything to 10px base
+$border-radius: 0.4rem;
+$border-radius-lg: 0.48rem;
+$border-radius-sm: 0.32rem;
+$caret-width: 0.48rem;
+$mark-padding: 0.32rem;
+$list-inline-padding: 0.8rem;
+
+// Grid Breakpoints, Container should be 30px smaller than breakpoint to ensure 30px
+// gap at the side so the padding on the left right of the main container will be
+// the same as the padding inside the container between the elements, ex:
+// |Edge of browser| <space here > | .container | <space here> | left col | <space> |
+// <space> | right col | <space> | .container | <space here> | Edge of Browser|
+// 2 spaces on the side, 2 spaces inside, 2 space here on the other side
+//  
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+$container-max-widths: (
+    sm: 546px,
+    md: 738px,
+    lg: 962px,
+    xl: 1170px
 );
 
 // overwrite bootstrap defaults
@@ -179,20 +201,5 @@ $kbd-padding-x: 0.64rem;
 
 
 
-$grid-breakpoints: (
-    xs: 0,
-    sm: 576px,
-    md: 768px,
-    lg: 992px,
-    xl: 1200px,
-    xxl: 1440px
-);
 
-$container-max-widths: (
-    sm: 546px,
-    md: 738px,
-    lg: 962px,
-    xl: 1170px,
-    xxl: 1200px
-)
 

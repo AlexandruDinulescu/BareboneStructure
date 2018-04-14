@@ -3,17 +3,26 @@
 ////
 
 /// Colors Map 
+/// This is used to set colors
 /// @group Colors
 /// @type Map
-/// @prop {Color} lightest [rgb(200,200,200)]
-/// @prop {Color} lighter [#f5b180]
+/// @prop {Color} mainColor [#464646]
+/// @prop {Color} headings [#f4a01b]
 $colors: (
-  lightest: rgb(200,200,200),
-  lighter: #f5b180,
+  mainColor : #464646,
+  headings : #f4a01b,
+  white : #fff,
+  red : #c50c0c,
+  openHoursDarkGray: #898989,
+  openHoursLightGray: #b9b9b9
 );
 
+/// Theme Colors
+/// These colors will be added to the thigns that bootstrap is creating such as alert colors, backgrounds, etc
+/// @group Colors
+/// @type Map
+/// @prop {Color} 
 
-$primaryColors: (
-    white: rgb(255, 255, 255),
-    black: rgb(0,0 ,0),
-)
+$theme-colors:  (
+
+);
