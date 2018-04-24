@@ -84,3 +84,43 @@
     top: 50%;
     transform: translateY(-50%); 
  }
+
+/// Input[type='number'] Mixin. This contains the base for that as 
+/// as well as the 2 accompaning buttons 
+/// @group Mixins
+/// @content
+/// @example 
+///     .example {
+///         @include numberInput() {
+///             @content;
+///         }
+/// HTML Structure
+/// <div class="input-number-container">
+///     <input oninput="this.value=this.value.slice(0,this.maxLength)" type="number" class="input-number" min="0" max="999" maxlength="3" step="1" />
+///     <span class="increaseNr">
+///         <i class="fas fa-caret-up"></i>
+///     </span>
+///     <span class="decreaseNr">
+///         <i class="fas fa-caret-down"></i>
+///     </span>
+/// </div>
+@mixin inputNumber(){
+    .input-number-container {
+        @content;
+        input[type='number'].input-number {
+            -moz-appearance: textfield;
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/// Very Custom Button Styling Mixin. 
+/// @group Mixins
+@mixin button(){
+    /// Custom Styles Here 
+}
+

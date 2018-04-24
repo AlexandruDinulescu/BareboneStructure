@@ -1,0 +1,97 @@
+.radio {
+    display: block;
+    &.radio-inline {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    &+& {
+        margin-left: 10px;
+    }
+    input[type='radio'] {
+        $width: (nth($button-radio, 5)) / 2;
+        $spriteOffsetX: nth($button-radio, 3);
+        $spriteOffsetY: nth($button-radio, 4);
+        display: none;
+        &+label {
+            cursor: pointer;
+            position: relative;
+            padding-right: 0px;
+            display: block;
+            line-height: 20px;
+            min-height: 20px;
+            user-select: none;
+            &::before {
+                content: '';
+                display: inline-block;
+                margin-right: 8px;
+                background-repeat: no-repeat;
+                vertical-align: middle;
+                width: $width;
+                background-repeat: no-repeat;
+                background-position: $spriteOffsetX $spriteOffsetY;
+                margin-top: -2px;
+                position: relative;
+                @include sprite-height($button-radio);
+                @include sprite-image($button-radio);
+            }
+        }
+        &:checked+label:before {
+            background-position: ($spriteOffsetX - $width) $spriteOffsetY;
+        }
+    }
+}
+
+.checkbox {
+    display: block;
+    &.checkbox-inline {
+        vertical-align: middle;
+        display: inline-block;
+    }
+    &+& {
+        margin-left: 10px;
+    }
+    input[type='checkbox'] {
+        $width: (nth($button-checkbox, 5)) / 2;
+        $spriteOffsetX: nth($button-checkbox, 3);
+        $spriteOffsetY: nth($button-checkbox, 4);
+        display: none;
+        &+label {
+            cursor: pointer;
+            position: relative;
+            padding-right: 0px;
+            display: block;
+            line-height: 20px;
+            min-height: 20px;
+            user-select: none;
+            &::before {
+                content: '';
+                display: inline-block;
+                margin-right: 8px;
+                background-repeat: no-repeat;
+                vertical-align: middle;
+                width: $width;
+                background-repeat: no-repeat;
+                background-position: $spriteOffsetX $spriteOffsetY;
+                margin-top: -2px;
+                position: relative;
+                @include sprite-height($button-checkbox);
+                @include sprite-image($button-checkbox);
+            }
+        }
+        &:checked+label:before {
+            background-position: ($spriteOffsetX - $width) $spriteOffsetY;
+        }
+    }
+}
+
+/* 
+<div class="checkbox OR checkbox-inline">
+<input type="checkbox" id="c1" name="cc" />
+<label for="c1"><span></span>Check Box 1</label>
+</div>
+
+<div class="radio OR radio-inline">
+<input type="radio" id="c1" name="cc" />
+<label for="c1" onclick="" ><span></span>RADIO BOX 1</label>
+</div>
+*/

@@ -1,0 +1,25 @@
+////
+/// @author AlexD
+/// Bootstrap 4 dependent functions & mixins (Built on Top Of Bootstrap framework
+/// using bootstrap 4 vars and the like. These come after BS4 initialises
+////
+
+/// Table Responsive hack for table displays 
+/// @example
+/// <div class='respond-from-(xs|sm|md|lg|xl)
+///     <table class="table <other table classes>
+///     </table>
+/// </div>
+@each $breakpointKey, $breakpointValue in $grid-breakpoints {
+    @if ($breakpointKey != 'xs') {
+        @include media-breakpoint-down($breakpointKey) {
+            .respond-from-#{$breakpointKey} {
+                overflow-x: scroll;
+                width: 100%; 
+                > table {
+                    min-width: map-get($map: $container-max-widths, $key: $breakpointKey)
+                }
+            }
+        }
+    }
+}
