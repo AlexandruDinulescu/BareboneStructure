@@ -142,7 +142,18 @@ var gulpPath = {
         get watch() {
             return gulpPath.appDir + 'scss/**/*.scss';
         }
-    }
+    },
+    fonts: {
+        get input() {
+            return gulpPath.appDir + 'fonts/**/*.*';
+        },
+        get output() {
+            return gulpPath.distDir + 'fonts/';
+        },
+        get watch() {
+            return gulpPath.appDir + 'fonts/**/*.*';
+        }
+    }	
 };
 
 gulp.task('clean', function () {
@@ -204,6 +215,12 @@ gulp.task('copyLib', function () {
 gulp.task('copyHtml', function () {
     return gulp.src(gulpPath.html.input)
         .pipe(gulp.dest(gulpPath.html.output))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('copyFonts', function() {
+    return gulp.src(gulpPath.fonts.input)
+        .pipe(gulp.dest(gulpPath.fonts.output))
         .pipe(browserSync.stream());
 });
 
@@ -277,7 +294,7 @@ gulp.task('browserSync', function () {
  * Run Tasks 1st run build then watch
  */
 gulp.task('build', function () {
-    runSequence('clean', 'copyNodeJS', 'copyNodeSCSS', 'copyBoostrapSCSS', 'copyLib', 'bundleJS', 'copyHtml', 'sprite', 'images', 'scss');
+    runSequence('clean', 'copyNodeJS', 'copyNodeSCSS', 'copyBoostrapSCSS', 'copyLib', 'bundleJS', 'copyHtml', 'copyFonts', 'sprite', 'images', 'scss');
 });
 
 /** 
@@ -294,5 +311,6 @@ gulp.task('watch', ['browserSync', 'scss', 'bundleJS', 'spriteImgCombo'], functi
     gulp.watch(gulpPath.jsLib.watch, ['copyLib']);
     gulp.watch(gulpPath.JS.watch, ['bundleJS']);
     gulp.watch(gulpPath.html.watch, ['copyHtml']);
+    gulp.watch(gulpPath.fonts.watch, ['copyFonts']);	
 });
 

@@ -67,3 +67,11 @@ svg[class*='fa-'] {
         display: block;
     }
 }
+
+.main-content figure { text-align: center; }
+.main-content figure img { display: block;  max-width: 100%; }
+.main-content figcaption { font-size: 1rem; font-style: italic; padding: 30px; }
+.main-content figure[align="left"] { margin: 15px 15px 15px 0px; float: left;}
+.main-content figure[align="right"] { margin: 15px 0px 15px 15px; float: right;}
+.main-content figure.full { }
+.main-content figure.full img { width: 100%;  }

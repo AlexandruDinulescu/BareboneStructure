@@ -27,3 +27,34 @@
 	top: 0;
 	left: calc(100% + 2px); 
 }
+
+.outer-navigation {
+    background-color: color(red);
+    padding: size(10) 0;
+
+    h2 {
+        font-size: 3.4rem;
+        color: #fff;
+        font-weight: 700;
+        margin-bottom: 0;
+        padding-top: size(9);
+        float: left;
+    
+        @include media-breakpoint-up('lg') {
+            display: none;
+        }
+    }
+    
+    .icon-span {
+        float: right;
+        cursor: pointer;
+        &::before {
+            margin-right: 0;
+        }
+    
+        @include media-breakpoint-up('lg') {
+            display: none;
+        }
+        
+    }    
+}
