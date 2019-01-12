@@ -1,0 +1,205 @@
+/**
+ * SCSS Variables
+ */
+
+html *:last-child {
+    margin-bottom: 0;
+}
+
+/** Default DO NOT MODIFY THIS */
+$website-font-size: 62.5%; // 1rem == 10px; easier math
+
+/** Default Font Size and default line height */
+$font-size-base: 1.4rem;
+$line-height-base: 1.25;
+
+/** Default Font-Families */
+$font-family-base: "Ubuntu", "sans-serif";
+$font-family-headings: "Great Vibes";
+
+$body-bg: #fff;
+$body-color: map-get($map: $colors, $key: mainColor ); 
+
+
+$headings-color: map-get($map: $colors, $key: headings );
+$headings-font-family: $font-family-headings;
+$headings-font-weight: 700;
+$headings-line-height: 1;
+
+/** Headings Default Sizes && Display Sizes */
+$h1-font-size: 3rem;
+$h2-font-size: 2.75rem;
+$h3-font-size: 2.50rem;
+$h4-font-size: 2.25rem;
+$h5-font-size: 2.0rem;
+$h6-font-size: 1.6rem;
+
+$paragraph-margin-bottom: $font-size-base; 
+
+$display1-size: 9.6rem;
+$display2-size: 8.8rem;
+$display3-size: 7.2rem;
+$display4-size: 5.6rem;
+
+/** Table Accent BG (even/odd) */
+$table-accent-bg: #f6f6f6;
+
+/** Create Map For Custom Table Classes
+ * Classes are called table-paddingTopSize&PaddingBottomSize-paddingLeftSide&PaddingRightSize
+ * ex: table-sm-sm / table-lg-sm (large top/bot padding, small sideways padding
+ */
+$custom-table-cell-padding: (
+    xs : 0.3rem,
+    sm : 0.5rem,
+    md : 0.75rem,
+    lg : 1rem,
+    xl : 1.2rem
+);
+
+// fix bs crap convert everything to 10px base
+$border-radius: 0.4rem;
+$border-radius-lg: 0.48rem;
+$border-radius-sm: 0.32rem;
+$caret-width: 0.48rem;
+$mark-padding: 0.32rem;
+$list-inline-padding: 0.8rem;
+
+// Grid Breakpoints, Container should be 30px smaller than breakpoint to ensure 30px
+// gap at the side so the padding on the left right of the main container will be
+// the same as the padding inside the container between the elements, ex:
+// |Edge of browser| <space here > | .container | <space here> | left col | <space> |
+// <space> | right col | <space> | .container | <space here> | Edge of Browser|
+// 2 spaces on the side, 2 spaces inside, 2 space here on the other side
+//  
+
+$grid-breakpoints: (
+    xs: 0,
+    sm: 576px,
+    md: 768px,
+    lg: 992px,
+    xl: 1200px
+);
+
+$container-max-widths: (
+    sm: 546px,
+    md: 738px,
+    lg: 962px,
+    xl: 1170px
+);
+
+// overwrite bootstrap defaults
+$table-cell-padding: 1.2rem;
+$table-cell-padding-sm: 0.5rem;
+
+$input-btn-padding-y: 0.6rem;
+$input-btn-padding-x: 1.2rem;
+$input-btn-focus-width: 0.32rem;
+
+$input-btn-padding-y-sm: 0.4rem;
+$input-btn-padding-x-sm: 0.8rem;
+
+$input-btn-padding-y-lg: 0.8rem;
+$input-btn-padding-x-lg: 1.6rem;
+
+$btn-block-spacing-y: 0.8rem;
+
+$form-text-margin-top: 0.4rem;
+
+$form-check-input-gutter: 2rem;
+$form-check-input-margin-y: 0.48rem;
+$form-check-input-margin-x: 0.4rem;
+
+$form-check-inline-margin-x: 1.2rem;
+$form-check-inline-input-margin-x: 0.5rem;
+
+$form-group-margin-bottom: 1.6rem;
+
+$custom-control-gutter: 2.4rem;
+$custom-control-spacer-x: 1.6rem; 
+
+$custom-control-indicator-size: 1.6rem;
+$custom-control-indicator-box-shadow: inset 0 0.4rem 0.4rem rgba(#000, .1);
+
+$custom-select-padding-y: 0.6rem;
+$custom-select-padding-x: 1.2rem;
+$custom-select-indicator-padding: 1.6rem;
+
+$dropdown-min-width: 16rem;
+$dropdown-padding-y: 0.8rem;
+$dropdown-spacer: 0.2rem; 
+
+$dropdown-item-padding-y: 0.4rem;
+$dropdown-item-padding-x: 2.4rem;
+
+$nav-link-padding-y: 0.8rem;
+$nav-link-padding-x: 1.6rem;
+
+$navbar-nav-link-padding-x: 0.8rem;
+$navbar-toggler-padding-y: 0.4rem;
+$navbar-toggler-padding-x: 1.2rem;
+
+$pagination-padding-y: 0.8rem;
+$pagination-padding-x: 1.2rem;
+$pagination-padding-y-sm: 0.4rem;
+$pagination-padding-x-sm: 0.8rem;
+$pagination-padding-y-lg: 1.2rem;
+$pagination-padding-x-lg: 2.4rem;
+
+$jumbotron-padding: 3.2rem;
+$card-spacer-y: 1.2rem;
+$card-spacer-x: 2rem;
+
+$card-img-overlay-padding: 2rem;
+$card-columns-gap: 2rem;
+
+$tooltip-padding-y: 0.4rem;
+$tooltip-padding-x: 0.8rem;
+
+$tooltip-arrow-width: 1.28rem;
+$tooltip-arrow-height: 0.64rem;
+
+$popover-box-shadow: 0 0.4rem 0.8rem rgba(#000, .2);
+$popover-header-padding-y: 0.8rem;
+$popover-header-paddig-x: 1.2rem;
+
+$popover-arrow-width: 1.6rem;
+$popover-arrow-height: 0.8rem;
+
+$badge-padding-y: 0.4rem;
+$badge-padding-x: 0.64rem;
+
+$badge-pill-padding-x: 0.96rem;
+$badge-pill-border-radius: 16rem;
+
+$modal-inner-padding: 1.6rem;
+$modal-dialog-margin: 0.8rem;
+$modal-dialog-margin-y-sm-up: 2.8rem;
+$modal-content-box-shadow-xs: 0 .4rem 0.8rem rgba(#000, 0.5);
+$modal-content-box-shadow-sm-up: 0 0.8rem 1.6rem rgba(#000, 0.5);
+$modal-header-padding: 1.6rem;
+
+$alert-padding-y: 1.2rem;
+$alert-padding-x: 2rem;
+$alert-margin-bottom: 1.6rem;
+
+$progress-height: 1.6rem;
+$progress-box-shadow: inset 0 .16rem .16rem rgba(#000, .1);
+
+$list-group-item-padding-y: 1.2rem;
+$list-group-item-padding-x: 2rem;
+
+$thumbnail-padding: 0.4rem;
+
+$breadcrumb-padding-y: 1.2rem;
+$breadcrumb-padding-x: 1.6rem;
+$breadcrumb-item-padding: 0.8rem;
+
+$breadcrumb-margin-bottom: 1.6rem;
+
+$kbd-padding-y: 0.32rem;
+$kbd-padding-x: 0.64rem;
+
+
+
+
+

@@ -1,0 +1,111 @@
+// -----------------------------------------------------------------------------
+// This file contains CSS helper classes.
+// -----------------------------------------------------------------------------
+.hide-text {
+    @include hide-text();
+}
+
+.visually-hidden {
+    @include visually-hidden();
+}
+
+.align-baseline {
+    &.table {
+        th,
+        td {
+            vertical-align: baseline !important;
+        }
+    }
+    vertical-align: baseline !important;
+} // Browser default
+.align-top {
+    &.table {
+        th,
+        td {
+            vertical-align: top !important;
+        }
+    }
+    vertical-align: top !important;
+}
+
+.align-middle {
+    &.table {
+        td,
+        th {
+            vertical-align: middle !important;
+        }
+    }
+    vertical-align: middle !important;
+}
+
+.align-bottom {
+    &.table {
+        td,
+        th {
+            vertical-align: bottom !important;
+        }
+    }
+    vertical-align: bottom !important;
+}
+
+.align-text-bottom {
+    &.table {
+        td,
+        th {
+            vertical-align: text-bottom !important;
+        }
+    }
+    vertical-align: text-bottom !important;
+}
+
+.align-text-top {
+    &.table {
+        td,
+        th {
+            vertical-align: text-top !important;
+        }
+    }
+    vertical-align: text-top !important;
+}
+
+.table.no-border {
+    td,
+    th {
+        border: 0 none;
+    }
+}
+
+.button {
+    @include button();
+}
+
+@include inputNumber(){
+    position: relative;
+    display: inline-block;
+
+    input[type='number'].input-number {
+        border: 1px solid color(openHoursLightGray);
+        border-radius: 20px;
+        display: inline-block;
+        width: 90px;
+        padding: 5px 30px 5px 20px;
+        font-size: 1.8rem;
+        font-family: $font-family-base;
+    }
+    span {
+        position: absolute;
+        right: 15px;
+        color: #000;
+        cursor: pointer;
+        &.increaseNr {
+            top: 4px;
+        }
+        &.decreaseNr {
+            bottom: 4px;
+        }
+        svg {
+            margin-right: 0;
+            display: block;
+        }
+    } 
+}

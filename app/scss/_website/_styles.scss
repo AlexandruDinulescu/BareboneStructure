@@ -1,0 +1,77 @@
+html {
+    font-size: $website-font-size;
+}
+
+a {
+    transition: all 0.125s ease-in;
+    border-bottom: 1px solid transparent;
+    text-decoration: none;
+
+    &:hover {
+        text-decoration: none;
+        border-color: color(mainColor);
+    }
+    // If the Link has a SVG icon on it, make it so it's transitioning as well
+    svg {
+        transition: all 0.125s ease-in;
+    }
+}
+
+svg[class*='fa-'] {
+    &[class*='has-margin-right'] {
+        margin-right: size(5);
+    }
+    &[class*='has-margin-left'] {
+        margin-left: size(5);
+    }
+}
+
+/** SM is the first content that has a 30px gutter between edge of screen to container, XS has 15px */
+.page-spacing {
+    padding: size(15) 0 0;
+    margin: 0;
+    @include media-breakpoint-up(sm) {
+        padding: size(30) 0 0;
+    }
+
+    @include media-breakpoint-up(md) {
+        padding: size(40) 0 size(10);
+    }
+    @include media-breakpoint-up(lg) {
+        padding: size(80) 0 size(50);
+    }
+}
+
+        input[type='number'].qtyInput {
+            -moz-appearance: textfield;
+        }
+        input[type=number].qtyInput::-webkit-inner-spin-button,
+        input[type=number].qtyInput::-webkit-outer-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+
+// this is a demo to illustrate bootstrap items, remove this in production
+.demo-row {
+    margin: size(20) 0;
+
+    .modal {
+
+        position: relative;
+        top: auto;
+        right: auto;
+        left: auto;
+        bottom: auto;
+        z-index: 1;
+        display: block;
+    }
+}
+
+.main-content figure { text-align: center; }
+.main-content figure img { display: block;  max-width: 100%; }
+.main-content figcaption { font-size: 1rem; font-style: italic; padding: 30px; }
+.main-content figure[align="left"] { margin: 15px 15px 15px 0px; float: left;}
+.main-content figure[align="right"] { margin: 15px 0px 15px 15px; float: right;}
+.main-content figure.full { }
+.main-content figure.full img { width: 100%;  }

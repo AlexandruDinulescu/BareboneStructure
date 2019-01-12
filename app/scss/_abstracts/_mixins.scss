@@ -1,0 +1,126 @@
+////
+/// @author AlexD
+////
+
+/// Media To (breakpoint up to) Max Width
+/// @group Media Queries
+/// @param {string} $name - $name of the $breakpoint
+/// @example
+///
+///     @include media-to([xs,sm,md,lg,xl,...]) {
+///         @content
+///     }
+/// 
+@mixin media-to($name) {
+    @media screen and (max-width: map-get($breakpoints-max, $name)) {
+        @content;
+    }
+}
+
+/// Media From (breakpoint from ) Min Width
+/// @group Media Queries
+/// @param {string} $name - $name of the $breakpoint 
+/// @example 
+///     
+///     @include media-from([sm,md,lg,xl...]){
+///         @content 
+///     }
+@mixin media-from($name) {
+    @media screen and (min-width: map-get($breakpoints-min, $name)) {
+        @content;
+    }
+}
+
+/// Clearfix mixin just include where needed
+/// @group Mixins
+/// @example
+///     .element {
+///         @include clearfix();
+///     }
+@mixin clearfix() {
+    &:after {
+        content: " ";
+        display: table;
+        clear: both;
+    }
+}
+
+/// Hide text while making it readable for screen readers
+/// @group Mixins
+/// @example 
+///     .element {
+///         @include hide-text();
+///     }
+@mixin hide-text(){
+    overflow: hidden;
+    padding: 0; /* 1 */
+    text-indent: 101%;
+    white-space: nowrap;
+}
+
+/// Hide element while making it readable for screen readers
+/// @group Mixins
+/// @example 
+///     .element {
+///          @include visually-hidden()
+///    }
+@mixin visually-hidden(){
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+/// Vertical Central An Absolutely Positioned Elemenet
+/// @group Mixins
+/// @example 
+///     .example {
+///         @include v-align();
+///     }
+@mixin v-align(){
+    top: 50%;
+    transform: translateY(-50%); 
+ }
+
+/// Input[type='number'] Mixin. This contains the base for that as 
+/// as well as the 2 accompaning buttons 
+/// @group Mixins
+/// @content
+/// @example 
+///     .example {
+///         @include numberInput() {
+///             @content;
+///         }
+/// HTML Structure
+/// <div class="input-number-container">
+///     <input oninput="this.value=this.value.slice(0,this.maxLength)" type="number" class="input-number" min="0" max="999" maxlength="3" step="1" />
+///     <span class="increaseNr">
+///         <i class="fas fa-caret-up"></i>
+///     </span>
+///     <span class="decreaseNr">
+///         <i class="fas fa-caret-down"></i>
+///     </span>
+/// </div>
+@mixin inputNumber(){
+    .input-number-container {
+        @content;
+        input[type='number'].input-number {
+            -moz-appearance: textfield;
+            &::-webkit-inner-spin-button,
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+        }
+    }
+}
+
+/// Very Custom Button Styling Mixin. 
+/// @group Mixins
+@mixin button(){
+    /// Custom Styles Here 
+}
+

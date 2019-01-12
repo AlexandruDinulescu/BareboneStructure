@@ -1,0 +1,47 @@
+////
+/// @author AlexD
+////
+
+
+/// Get Color From $Colors Map
+/// Easier than just write map-get, write color($key)
+/// @group Functions
+/// @param {string} $color - $color key from $colors map
+/// @require $colors
+/// @example 
+///     .element { 
+///         color: color($color); 
+///     }
+@function color($color){
+    @if map-has-key($colors, $color) {
+        @return map-get($colors, $color);
+    } @else {
+        @error "No Key Found: #{$color}.";  
+    }
+}
+/// General Multipurpuse Pixel to Rem Function
+/// Converts PX -> REM
+/// @group Functions
+/// @param {number} $size - size in pixel size
+/// @example 
+///     .example {
+///         padding: size($number);
+///     }
+@function size($number) {
+    @return $number/10 * $spacer;
+}
+/// Table creation function
+/// @group Functions
+/// Automatic generation of a custom bootstrap-like tableled layout. Make sure 
+/// the keys from $grid-breakpoints map, match the keys from the 
+/// $custom-table-cell-padding. 
+@each $breakpointKey, $breakpointValue in $grid-breakpoints {
+    @each $breakpoint2Key, $breakpoint2Value in $grid-breakpoints {
+        .table-#{$breakpointKey}-#{$breakpoint2Key} {
+            padding-left: map-get($map: $custom-table-cell-padding, $key: $breakpointKey );
+            padding-right: map-get($map: $custom-table-cell-padding, $key: $breakpointKey);
+            padding-top: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key );
+            padding-bottom: map-get($map: $custom-table-cell-padding, $key: $breakpoint2Key ); 
+        }
+    }
+}

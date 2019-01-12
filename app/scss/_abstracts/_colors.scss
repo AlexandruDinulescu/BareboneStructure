@@ -1,0 +1,28 @@
+////
+/// @author AlexD
+////
+
+/// Colors Map 
+/// This is used to set colors
+/// @group Colors
+/// @type Map
+/// @prop {Color} mainColor [#464646]
+/// @prop {Color} headings [#f4a01b]
+$colors: (
+  mainColor : #464646,
+  headings : #f4a01b,
+  white : #fff,
+  red : #c50c0c,
+  openHoursDarkGray: #898989,
+  openHoursLightGray: #b9b9b9
+);
+
+/// Theme Colors
+/// These colors will be added to the thigns that bootstrap is creating such as alert colors, backgrounds, etc
+/// @group Colors
+/// @type Map
+/// @prop {Color} 
+
+$theme-colors:  (
+
+);

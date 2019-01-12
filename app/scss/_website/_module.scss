@@ -1,0 +1,20 @@
+/**
+ * Imports _Website Modules into this file. 
+ * This file will later be imported into the main app.scss file.
+ */
+
+// abstracts (bootstrap 4 dependendent functions and mixins -> coming after bs 4
+@import './abstracts/_module.scss';
+
+// base ( colors, fonts, helpers, sprite - these output scss )
+@import './base/module';
+
+// components (different components than bootstrap ones are included here)
+@import './components/module';
+
+// partials (different page sections are included here) 
+@import './partials/_module.scss';
+
+// At the end import shame.scss (content that has to be moved into other files) && styles.scss (actual website styles)
+@import 'styles';
+@import 'shame';
